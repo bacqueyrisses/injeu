@@ -1,11 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSound from "use-sound";
-import PlaySection from "@/app/components/start/PlaySection";
-import PrequelSection from "@/app/components/start/PrequelSection";
-import WelcomeSection from "@/app/components/start/WelcomeSection";
+import PlaySection from "@/components/start/PlaySection";
+import PrequelSection from "@/components/start/PrequelSection";
+import WelcomeSection from "@/components/start/WelcomeSection";
+import { useSearchParams } from "next/navigation";
 
 export default function StartPage() {
+  const searchParams = useSearchParams();
+  const play = searchParams.get("play");
+  console.log(play);
+
   const [teamSelected, setTeamSelected] = useState(false);
 
   const [firstAudioStarted, setFirstAudioStarted] = useState(false);
@@ -25,6 +30,14 @@ export default function StartPage() {
       setSecondAudioStarted(false);
     },
   });
+
+  useEffect(() => {
+    if (play === "true") {
+      setTeamSelected(true);
+      setFirstAudioEnded(true);
+      setSecondAudioEnded(true);
+    }
+  }, []);
 
   function teamSection() {
     const handleTeamInit = () => {

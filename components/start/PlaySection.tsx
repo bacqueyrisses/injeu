@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import Link from "next/link";
 
 interface PlaySectionI {
   setSecondAudioEnded: Dispatch<SetStateAction<boolean>>;
@@ -12,7 +13,9 @@ export default function PlaySection({ setSecondAudioEnded }: PlaySectionI) {
       <div
         className={"flex justify-center items-center w-full h-4/6 bg-injeu-red"}
       >
-        <span className={"text-9xl text-white"}>GO!</span>
+        <Link href={"/code"} className={"text-9xl text-white"}>
+          GO!
+        </Link>
       </div>
       <div
         className={
