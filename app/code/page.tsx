@@ -38,15 +38,6 @@ export default function CodePage() {
     }
   };
 
-  const handleClearCode = () => {
-    if (activeCode === 1) {
-      setCode1("");
-    } else {
-      setCode2("");
-      setActiveCode(1);
-    }
-  };
-
   return (
     <main
       className={"flex flex-col w-full h-screen items-center justify-between"}
@@ -64,15 +55,15 @@ export default function CodePage() {
         }
       >
         <span
-          className={`text-7xl bg-white w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error && "bg-red-200 transition-colors"
+          className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
+            error ? "bg-injeu-light-red transition-colors" : "bg-white"
           }`}
         >
           {code1}
         </span>
         <span
-          className={`text-7xl bg-white w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error && "bg-red-200 transition-colors"
+          className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
+            error ? "bg-injeu-light-red transition-colors" : "bg-white"
           }`}
         >
           {code2}

@@ -73,29 +73,29 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         }
       >
         <span
-          className={`text-7xl bg-white w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error && "bg-red-200 transition-colors"
+          className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
+            error ? "bg-injeu-light-red transition-colors" : "bg-white"
           }`}
         >
           {code1}
         </span>
         <span
-          className={`text-7xl bg-white w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error && "bg-red-200 transition-colors"
+          className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
+            error ? "bg-injeu-light-red transition-colors" : "bg-white"
           }`}
         >
           {code2}
         </span>
         <span
-          className={`text-7xl bg-white w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error && "bg-red-200 transition-colors"
+          className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
+            error ? "bg-injeu-light-red transition-colors" : "bg-white"
           }`}
         >
           {code3}
         </span>
         <span
-          className={`text-7xl bg-white w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error && "bg-red-200 transition-colors"
+          className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
+            error ? "bg-injeu-light-red transition-colors" : "bg-white"
           }`}
         >
           {code4}
