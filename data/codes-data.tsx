@@ -4,6 +4,7 @@ export const CodesData = [
     title: "RADIO",
     color: " bg-injeu-light-gray",
     audio: "/audios/0.mp3",
+    hint: "/audios/0.mp3",
     secret: 5879,
   },
   {
@@ -11,6 +12,7 @@ export const CodesData = [
     title: "AGENDA",
     color: " bg-injeu-light-green",
     audio: "/audios/0.mp3",
+    hint: "/audios/0.mp3",
     secret: 3746,
   },
   {
@@ -18,6 +20,7 @@ export const CodesData = [
     title: "BOBINE",
     color: " bg-injeu-light-blue",
     audio: "/audios/0.mp3",
+    hint: "/audios/0.mp3",
     secret: 2416,
   },
   {
@@ -25,6 +28,7 @@ export const CodesData = [
     title: "CHAUSSON",
     color: " bg-injeu-brown",
     audio: "/audios/0.mp3",
+    hint: "/audios/0.mp3",
     secret: 2006,
   },
 ];

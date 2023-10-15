@@ -32,15 +32,14 @@ export default function Home() {
           <span className={"text-3xl"}>Développé par NOM</span>
           <span className={"text-3xl"}>LOGOS</span>
         </div>
-        <div
+        <Link
+          href={"/start"}
           className={
             "w-full h-2/6 bg-secondary flex justify-center items-center"
           }
         >
-          <Link href={"/start"} className={"md:text-6xl text-5xl"}>
-            COMMENCER
-          </Link>
-        </div>
+          <span className={"md:text-6xl text-5xl"}>COMMENCER</span>
+        </Link>
       </section>
     </main>
   );

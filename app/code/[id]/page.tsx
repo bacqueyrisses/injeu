@@ -52,7 +52,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         setCode3("");
         setCode4("");
         setActiveCode(1);
-      }, 1400);
+      }, 1300);
     }
   };
 
@@ -176,7 +176,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth="1.5"
+            strokeWidth="3"
             stroke="currentColor"
             height={70}
             width={70}
@@ -196,11 +196,12 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         >
           0
         </button>
-        <button
+        <Link
+          href={`/code/hint/${currentData.id}`}
           className={"inline-flex justify-center items-center bg-injeu-red"}
         >
           ?
-        </button>
+        </Link>
       </section>
     </main>
   );

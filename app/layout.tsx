@@ -1,8 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const lucioleFont = localFont({
+  src: "../public/fonts/Luciole-Bold.ttf",
+});
 
 export const metadata: Metadata = {
   title: "INJEU",
@@ -16,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + " font-bold"}>{children}</body>
+      <body className={lucioleFont.className}>{children}</body>
     </html>
   );
 }
