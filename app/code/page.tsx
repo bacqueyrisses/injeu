@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { CodesData } from "@/data/codes-data";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CodePage() {
   const router = useRouter();
@@ -142,8 +143,13 @@ export default function CodePage() {
         >
           9
         </button>
-        <button
-          onClick={handleClearCode}
+        <Link
+          href={{
+            pathname: "/start",
+            query: {
+              play: "true",
+            },
+          }}
           className={
             "inline-flex justify-center items-center bg-injeu-light-red"
           }
@@ -163,7 +169,7 @@ export default function CodePage() {
               d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
             />
           </svg>
-        </button>
+        </Link>
         <button
           onClick={() => handleNumberClick("0")}
           className={

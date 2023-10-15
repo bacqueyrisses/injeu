@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface WelcomeSectionI {
   handleFirstAudio: () => void;
   firstAudioStarted: boolean;
@@ -8,10 +10,13 @@ export default function WelcomeSection({
 }: WelcomeSectionI) {
   return (
     <>
-      <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
+      <Link
+        href={"/"}
+        className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary"
+      >
         <span>ACCUEIL</span>
-      </div>
-      <div
+      </Link>
+      <button
         className={
           "flex justify-center items-center w-full h-5/6 bg-injeu-blue"
         }
@@ -48,7 +53,7 @@ export default function WelcomeSection({
             />
           </svg>
         )}
-      </div>
+      </button>
     </>
   );
 }

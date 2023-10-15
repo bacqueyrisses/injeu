@@ -10,19 +10,18 @@ export default function PlaySection({ setSecondAudioEnded }: PlaySectionI) {
       <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
         <span>JOUER</span>
       </div>
-      <div
+      <Link
+        href={"/code"}
         className={"flex justify-center items-center w-full h-4/6 bg-injeu-red"}
       >
-        <Link href={"/code"} className={"text-9xl text-white"}>
-          GO!
-        </Link>
-      </div>
+        <span className={"text-9xl text-white"}>GO!</span>
+      </Link>
       <div
         className={
           "h-1/6 bg-injeu-light-red w-full flex items-center justify-start"
         }
       >
-        <span onClick={() => setSecondAudioEnded(false)}>
+        <button onClick={() => setSecondAudioEnded(false)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -38,7 +37,7 @@ export default function PlaySection({ setSecondAudioEnded }: PlaySectionI) {
               d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
             />
           </svg>
-        </span>
+        </button>
       </div>
     </>
   );

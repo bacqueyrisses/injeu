@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { CodesData } from "@/data/codes-data";
 import { notFound, useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface CodeSpecificPageI {
   params: { id: string };
@@ -22,6 +23,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
 
   const handleNumberClick = (number: string) => {
     if (code4 && activeCode === 4) return;
+
     if (activeCode === 1) {
       setCode1(number);
       setActiveCode(2);
@@ -39,8 +41,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
 
   const validateCode = (completeCode: number) => {
     if (secretCode === completeCode) {
-      console.log("win");
-      // void router.push(`/`);
+      void router.push(`/code/success/${currentData.id}`);
     } else {
       setError(true);
 
@@ -52,22 +53,6 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         setCode4("");
         setActiveCode(1);
       }, 1400);
-    }
-  };
-
-  const handleClearCode = () => {
-    if (code4) {
-      setCode4("");
-      setActiveCode(4);
-    } else if (code3) {
-      setCode3("");
-      setActiveCode(3);
-    } else if (code2) {
-      setCode2("");
-      setActiveCode(2);
-    } else {
-      setCode1("");
-      setActiveCode(1);
     }
   };
 
@@ -181,8 +166,8 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         >
           9
         </button>
-        <button
-          onClick={handleClearCode}
+        <Link
+          href={`/category/${currentData.id}`}
           className={
             "inline-flex justify-center items-center bg-injeu-light-red"
           }
@@ -202,7 +187,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
               d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
             />
           </svg>
-        </button>
+        </Link>
         <button
           onClick={() => handleNumberClick("0")}
           className={

@@ -15,7 +15,7 @@ export default function PrequelSection({
       <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
         <span>PROLOGUE</span>
       </div>
-      <div
+      <button
         className={"flex justify-center items-center w-full h-4/6 bg-injeu-red"}
         onClick={handleSecondAudio}
       >
@@ -50,13 +50,13 @@ export default function PrequelSection({
             />
           </svg>
         )}
-      </div>
+      </button>
       <div
         className={
           "h-1/6 bg-injeu-light-red w-full flex items-center justify-start"
         }
       >
-        <span onClick={() => setFirstAudioEnded(false)}>
+        <button onClick={() => setFirstAudioEnded(false)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -72,7 +72,7 @@ export default function PrequelSection({
               d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
             />
           </svg>
-        </span>
+        </button>
       </div>
     </>
   );
