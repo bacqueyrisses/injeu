@@ -26,7 +26,9 @@ export default function Home() {
             "flex flex-col items-center justify-center w-full h-4/6 bg-primary gap-16 text-center"
           }
         >
-          <span className={"text-6xl"}>Bienvenu dans l'expérience INJEU</span>
+          <span className={"text-6xl leading-extra-tight"}>
+            Bienvenu dans l'expérience INJEU
+          </span>
           <span className={"text-3xl"}>Développé par NOM</span>
           <span className={"text-3xl"}>LOGOS</span>
         </div>

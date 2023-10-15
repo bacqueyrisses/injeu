@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      lineHeight: {
+        "extra-tight": "1.15",
+      },
       colors: {
         primary: "#F9A715",
         secondary: "#CBBBA1",

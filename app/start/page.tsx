@@ -50,7 +50,9 @@ export default function StartPage() {
           "flex w-full h-full flex-col items-center justify-center text-center gap-16 bg-primary"
         }
       >
-        <span className={"text-5xl px-20 leading-tight"}>NOM DE L'ÉQUIPE</span>
+        <span className={"text-5xl px-20 leading-extra-tight"}>
+          NOM DE L'ÉQUIPE
+        </span>
         <input type={"text"} className={"bg-stone-400 p-4 rounded-xl"} />
         <button
           onClick={handleTeamInit}
