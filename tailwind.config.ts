@@ -12,6 +12,8 @@ const config: Config = {
         primary: "#F9A715",
         secondary: "#CBBBA1",
         "injeu-blue": "#23376C",
+        "injeu-red": "#D61518",
+        "injeu-light-red": "#F6BCAB",
       },
     },
   },
