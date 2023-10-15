@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -6,7 +7,7 @@ export default function Home() {
       <section
         className={"flex w-full h-screen flex-col items-center justify-between"}
       >
-        <div className="w-full items-center justify-between h-1/4 lg:flex bg-secondary" />
+        <div className="w-full items-center justify-between h-1/4 flex bg-secondary" />
 
         <div
           className={
@@ -34,9 +35,9 @@ export default function Home() {
             "w-full h-2/6 bg-secondary flex justify-center items-center"
           }
         >
-          <span className={"md:text-6xl text-5xl cursor-pointer"}>
+          <Link href={"/start"} className={"md:text-6xl text-5xl"}>
             COMMENCER
-          </span>
+          </Link>
         </div>
       </section>
     </main>
