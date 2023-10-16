@@ -170,7 +170,9 @@ export default function CodePage() {
           0
         </button>
         <button
-          className={"inline-flex justify-center items-center bg-injeu-red"}
+          className={
+            "inline-flex justify-center items-center bg-injeu-red opacity-50 cursor-no-drop"
+          }
         >
           ?
         </button>

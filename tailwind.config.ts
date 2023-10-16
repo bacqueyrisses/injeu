@@ -17,6 +17,7 @@ const config: Config = {
         "injeu-blue": "#23376C",
         "injeu-light-blue": "#2D9BF0",
         "injeu-red": "#D61518",
+        "injeu-yellow": "#FEF445",
         "injeu-light-red": "#F6BCAB",
         "injeu-light-green": "#62BEB1",
         "injeu-light-gray": "#E6E6E6",

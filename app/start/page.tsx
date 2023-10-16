@@ -53,10 +53,15 @@ export default function StartPage() {
         <span className={"text-5xl px-20 leading-extra-tight"}>
           NOM DE L'ÉQUIPE
         </span>
-        <input type={"text"} className={"bg-stone-400 p-5 rounded-xl"} />
+        <input
+          type={"text"}
+          className={
+            "bg-stone-400 px-5 py-4 rounded-xl outline-none focus-within:outline-injeu-yellow outline-2 outline-offset-2 text-2xl w-2/3 md:w-1/3 text-center"
+          }
+        />
         <button
           onClick={handleTeamInit}
-          className={"px-4 py-2 bg-yellow-300 rounded-xl text-3xl"}
+          className={"px-4 py-2 bg-injeu-yellow rounded-xl text-3xl"}
         >
           commencer
         </button>
