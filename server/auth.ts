@@ -6,7 +6,7 @@ import {
 } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "@/server/db";
-import { JWT } from "next-auth/jwt";
+import { DefaultJWT, JWT } from "next-auth/jwt";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -31,7 +31,7 @@ declare module "next-auth" {
 }
 
 declare module "next-auth/jwt" {
-  interface JWT {
+  interface JWT extends DefaultJWT {
     id: string;
     username: string;
   }
@@ -43,6 +43,8 @@ export async function getCurrentTeam() {
   return session?.user;
 }
 
+// @ts-ignore
+// @ts-ignore
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: {
@@ -52,7 +54,7 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "INTEAM" },
+        username: { label: "username", type: "text", placeholder: "INTEAM" },
       },
       async authorize(credentials, req) {
         const response = await fetch(
@@ -64,7 +66,7 @@ export const authOptions: NextAuthOptions = {
           },
         );
         const user = await response.json();
-
+        console.log("authorize" + user.username);
         // If no error and we have user data, return it
         if (response.ok && user) {
           return user;
@@ -87,7 +89,8 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, session }) {
+      console.log(token, user, session);
       const dbUser = await db.user.findFirst({
         where: {
           id: token.id,
@@ -100,7 +103,6 @@ export const authOptions: NextAuthOptions = {
         }
         return token;
       }
-
       return {
         id: dbUser.id,
         username: dbUser.username,

@@ -41,9 +41,13 @@ export default function StartPage() {
   }, []);
 
   function teamSection() {
-    const handleTeamInit = () => {
+    const handleTeamInit = async () => {
+      await signIn("credentials", {
+        username: "hugo",
+        redirect: false,
+        // callbackUrl: searchParams?.get("from") || "/admin/dashboard",
+      });
       setTeamSelected(true);
-      void signIn();
     };
 
     return (

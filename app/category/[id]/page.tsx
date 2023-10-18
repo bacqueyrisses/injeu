@@ -11,6 +11,7 @@ export default async function CategoryPage({ params }: CategoryPageI) {
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   if (!currentData) return notFound();
   const team = await getCurrentTeam();
+  // console.log(team);
 
   return (
     <main
