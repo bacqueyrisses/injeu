@@ -5,14 +5,15 @@ import PlaySection from "@/components/start/PlaySection";
 import PrequelSection from "@/components/start/PrequelSection";
 import WelcomeSection from "@/components/start/WelcomeSection";
 import { useSearchParams } from "next/navigation";
+import { signIn, signOut } from "next-auth/react";
 
 export default function StartPage() {
   const searchParams = useSearchParams();
   const play = searchParams.get("play");
-  console.log(play);
 
   const [teamSelected, setTeamSelected] = useState(false);
 
+  // TODO State machine firstAudioState enum started/playing/ended
   const [firstAudioStarted, setFirstAudioStarted] = useState(false);
   const [secondAudioStarted, setSecondAudioStarted] = useState(false);
   const [firstAudioEnded, setFirstAudioEnded] = useState(false);
@@ -42,6 +43,7 @@ export default function StartPage() {
   function teamSection() {
     const handleTeamInit = () => {
       setTeamSelected(true);
+      void signIn();
     };
 
     return (
@@ -65,6 +67,7 @@ export default function StartPage() {
         >
           commencer
         </button>
+        <button onClick={() => signOut()}>Sign Out</button>
       </section>
     );
   }

@@ -10,8 +10,7 @@ export const metadata: Metadata = {
   title: "INJEU",
   description: "Le jeu INJEU.",
 };
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
