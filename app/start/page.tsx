@@ -1,17 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import useSound from "use-sound";
 import PlaySection from "@/components/start/PlaySection";
 import PrequelSection from "@/components/start/PrequelSection";
 import WelcomeSection from "@/components/start/WelcomeSection";
 import { useSearchParams } from "next/navigation";
 import { signIn, signOut } from "next-auth/react";
+import { z } from "zod";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function StartPage() {
   const searchParams = useSearchParams();
   const play = searchParams.get("play");
 
   const [teamSelected, setTeamSelected] = useState(false);
+  const [teamName, setTeamName] = useState("");
 
   // TODO State machine firstAudioState enum started/playing/ended
   const [firstAudioStarted, setFirstAudioStarted] = useState(false);
@@ -41,13 +44,22 @@ export default function StartPage() {
   }, []);
 
   function teamSection() {
+    const handleTeamNameChange = async (e: ChangeEvent<HTMLInputElement>) => {
+      setTeamName(e.target.value);
+    };
     const handleTeamInit = async () => {
-      await signIn("credentials", {
-        username: "hugo",
-        redirect: false,
-        // callbackUrl: searchParams?.get("from") || "/admin/dashboard",
-      });
-      setTeamSelected(true);
+      const schema = z.coerce.string().min(1).trim().toLowerCase();
+      try {
+        schema.parse(teamName);
+        setTeamSelected(true);
+        console.log(teamName);
+        await signIn("credentials", {
+          username: teamName,
+          redirect: false,
+        });
+      } catch (error) {
+        return toast.error("Rentrez un nom d'équipe.");
+      }
     };
 
     return (
@@ -61,6 +73,8 @@ export default function StartPage() {
         </span>
         <input
           type={"text"}
+          value={teamName}
+          onChange={(e) => handleTeamNameChange(e)}
           className={
             "bg-stone-400 px-5 py-4 rounded-xl outline-none focus-within:outline-injeu-yellow outline-2 outline-offset-2 text-2xl w-2/3 md:w-1/3 text-center"
           }
@@ -72,6 +86,7 @@ export default function StartPage() {
           commencer
         </button>
         <button onClick={() => signOut()}>Sign Out</button>
+        <Toaster />
       </section>
     );
   }

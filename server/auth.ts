@@ -37,14 +37,12 @@ declare module "next-auth/jwt" {
   }
 }
 
-export async function getCurrentTeam() {
+export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
-
+  console.log("hi", session?.user);
   return session?.user;
 }
 
-// @ts-ignore
-// @ts-ignore
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: {
@@ -66,7 +64,6 @@ export const authOptions: NextAuthOptions = {
           },
         );
         const user = await response.json();
-        console.log("authorize" + user.username);
         // If no error and we have user data, return it
         if (response.ok && user) {
           return user;
@@ -90,16 +87,17 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user, session }) {
-      console.log(token, user, session);
       const dbUser = await db.user.findFirst({
         where: {
-          id: token.id,
+          id: token.sub,
         },
       });
-
       if (!dbUser) {
         if (user) {
           token.id = user?.id;
+        }
+        if (session) {
+          token.id = session?.id;
         }
         return token;
       }
@@ -108,5 +106,11 @@ export const authOptions: NextAuthOptions = {
         username: dbUser.username,
       };
     },
+    // async jwt({ user, token }) {
+    //   if (user) {
+    //     token.id = user?.id;
+    //   }
+    //   return token;
+    // },
   },
 };

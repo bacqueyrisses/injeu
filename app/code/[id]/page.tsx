@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CodesData } from "@/data/codes-data";
 import { notFound, useRouter } from "next/navigation";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 interface CodeSpecificPageI {
   params: { id: string };
@@ -39,8 +40,32 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
     }
   };
 
-  const validateCode = (completeCode: number) => {
+  const validateCode = async (completeCode: number) => {
     if (secretCode === completeCode) {
+      const response = await fetch(
+        "http://localhost:3000/api/category/create",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            categoryCode: currentData.id,
+            categoryName: currentData.title,
+          }),
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+      if (!response.ok) {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+          setCode1("");
+          setCode2("");
+          setCode3("");
+          setCode4("");
+          setActiveCode(1);
+        }, 1300);
+        return toast.error("Erreur serveur, réessayez.");
+      }
+
       void router.push(`/code/success/${currentData.id}`);
     } else {
       setError(true);
@@ -60,6 +85,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
     <main
       className={"flex flex-col w-full h-screen items-center justify-between"}
     >
+      <Toaster />
       <section
         className={
           "h-1/6 w-full bg-secondary flex items-center justify-center text-6xl"

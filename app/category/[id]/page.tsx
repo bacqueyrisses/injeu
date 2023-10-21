@@ -1,8 +1,8 @@
 import { CodesData } from "@/data/codes-data";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import AudioPlayer from "@/components/AudioPlayer";
-import { getCurrentTeam } from "@/server/auth";
+import { getCurrentUser } from "@/server/auth";
 
 interface CategoryPageI {
   params: { id: string };
@@ -10,8 +10,13 @@ interface CategoryPageI {
 export default async function CategoryPage({ params }: CategoryPageI) {
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   if (!currentData) return notFound();
-  const team = await getCurrentTeam();
-  // console.log(team);
+
+  const user = await getCurrentUser();
+  if (!user) return redirect("/start");
+
+  const response = await fetch(
+    `http://localhost:3000/api/category/select?code=${params.id}`,
+  );
 
   return (
     <main
