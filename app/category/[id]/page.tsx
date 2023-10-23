@@ -3,7 +3,8 @@ import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import AudioPlayer from "@/components/AudioPlayer";
 import { getCurrentUser } from "@/server/auth";
-
+import CategoryStateSection from "@/components/CategoryStateSection";
+import { db } from "@/server/db";
 interface CategoryPageI {
   params: { id: string };
 }
@@ -14,9 +15,10 @@ export default async function CategoryPage({ params }: CategoryPageI) {
   const user = await getCurrentUser();
   if (!user) return redirect("/start");
 
-  const response = await fetch(
-    `http://localhost:3000/api/category/select?code=${params.id}`,
-  );
+  const validCodes = CodesData.map((item) => item.id);
+  const allLevelsUnlocked = await db.category.findMany({
+    where: { userId: user.id, code: { in: validCodes } },
+  });
 
   return (
     <main
@@ -26,28 +28,13 @@ export default async function CategoryPage({ params }: CategoryPageI) {
         <span>{currentData.title}</span>
       </div>
       <AudioPlayer currentData={currentData} />
-      <Link
-        href={`/code/${currentData.id}`}
-        className={
-          "bg-injeu-red w-full h-1/6 inline-flex justify-center items-center"
-        }
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="white"
-          height={100}
-          width={100}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-          />
-        </svg>
-      </Link>
+      <CategoryStateSection
+        validCodes={validCodes}
+        allLevelsUnlocked={allLevelsUnlocked}
+        categoryCode={params.id}
+        userId={user.id}
+        currentCode={currentData.id}
+      />
       <div
         className={
           "bg-injeu-blue h-min grow w-full inline-flex justify-center items-center text-3xl text-white"

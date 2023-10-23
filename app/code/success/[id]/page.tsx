@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+
 interface SuccessPageI {
   params: { id: string };
 }

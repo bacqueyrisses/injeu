@@ -52,11 +52,11 @@ export default function StartPage() {
       try {
         schema.parse(teamName);
         setTeamSelected(true);
-        console.log(teamName);
         await signIn("credentials", {
-          username: teamName,
+          name: teamName,
           redirect: false,
         });
+        toast.success(`Bienvenue ${teamName} !`);
       } catch (error) {
         return toast.error("Rentrez un nom d'équipe.");
       }
@@ -105,6 +105,7 @@ export default function StartPage() {
       <section
         className={"flex w-full h-screen flex-col items-center justify-between"}
       >
+        <Toaster position="bottom-center" />
         {!firstAudioEnded ? (
           <WelcomeSection
             handleFirstAudio={handleFirstAudio}

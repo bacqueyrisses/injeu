@@ -5,6 +5,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./data/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -19,6 +20,7 @@ const config: Config = {
         "injeu-red": "#D61518",
         "injeu-yellow": "#FEF445",
         "injeu-light-red": "#F6BCAB",
+        "injeu-green": "#00963E",
         "injeu-light-green": "#62BEB1",
         "injeu-light-gray": "#E6E6E6",
         "injeu-brown": "#493D42",

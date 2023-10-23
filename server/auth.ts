@@ -18,28 +18,24 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
-      username: string;
-      // ...other properties
-      // role: UserRole;
+      name: string;
     } & DefaultSession["user"];
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+    name: string;
+  }
 }
 
 declare module "next-auth/jwt" {
   interface JWT extends DefaultJWT {
     id: string;
-    username: string;
+    name: string;
   }
 }
 
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
-  console.log("hi", session?.user);
   return session?.user;
 }
 
@@ -52,7 +48,7 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "username", type: "text", placeholder: "INTEAM" },
+        name: { label: "name", type: "text", placeholder: "INTEAM" },
       },
       async authorize(credentials, req) {
         const response = await fetch(
@@ -78,39 +74,19 @@ export const authOptions: NextAuthOptions = {
     async session({ token, session }) {
       if (token) {
         session.user.id = token.id;
-        session.user.username = token.username;
+        session.user.name = token.name;
       }
-      delete session.user.name;
       delete session.user.email;
       delete session.user.image;
 
       return session;
     },
-    async jwt({ token, user, session }) {
-      const dbUser = await db.user.findFirst({
-        where: {
-          id: token.sub,
-        },
-      });
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id;
-        }
-        if (session) {
-          token.id = session?.id;
-        }
-        return token;
+    async jwt({ user, token }) {
+      if (user) {
+        token.id = user?.id;
+        token.name = user?.name;
       }
-      return {
-        id: dbUser.id,
-        username: dbUser.username,
-      };
+      return token;
     },
-    // async jwt({ user, token }) {
-    //   if (user) {
-    //     token.id = user?.id;
-    //   }
-    //   return token;
-    // },
   },
 };

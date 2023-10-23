@@ -36,7 +36,7 @@ model Session {
 
 model User {
   id       String     @id @default(cuid())
-  username String?    @unique
+  name     String?    @unique
   accounts Account[]
   sessions Session[]
   Category Category[]

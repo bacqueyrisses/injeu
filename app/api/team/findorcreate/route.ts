@@ -3,14 +3,14 @@ import { db } from "@/server/db";
 
 export async function POST(request: Request) {
   const response = await request.json();
-  const { username } = response;
+  const { name } = response;
   const team = await db.user.upsert({
     where: {
-      username,
+      name,
     },
     update: {},
     create: {
-      username,
+      name,
     },
   });
 
