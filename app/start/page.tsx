@@ -5,9 +5,10 @@ import PlaySection from "@/components/start/PlaySection";
 import PrequelSection from "@/components/start/PrequelSection";
 import WelcomeSection from "@/components/start/WelcomeSection";
 import { useSearchParams } from "next/navigation";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { z } from "zod";
 import toast, { Toaster } from "react-hot-toast";
+import { TimerProvider } from "@/providers/TimerProvider";
 
 export default function StartPage() {
   const searchParams = useSearchParams();
@@ -85,7 +86,6 @@ export default function StartPage() {
         >
           commencer
         </button>
-        <button onClick={() => signOut()}>Sign Out</button>
         <Toaster />
       </section>
     );

@@ -4,7 +4,8 @@ import Link from "next/link";
 import AudioPlayer from "@/components/AudioPlayer";
 import { getCurrentUser } from "@/server/auth";
 import CategoryStateSection from "@/components/CategoryStateSection";
-import { db } from "@/server/db";
+import Timer from "@/components/Timer";
+
 interface CategoryPageI {
   params: { id: string };
 }
@@ -13,12 +14,9 @@ export default async function CategoryPage({ params }: CategoryPageI) {
   if (!currentData) return notFound();
 
   const user = await getCurrentUser();
-  if (!user) return redirect("/start");
+  if (!user) redirect("/start");
 
   const validCodes = CodesData.map((item) => item.id);
-  const allLevelsUnlocked = await db.category.findMany({
-    where: { userId: user.id, code: { in: validCodes } },
-  });
 
   return (
     <main
@@ -30,18 +28,11 @@ export default async function CategoryPage({ params }: CategoryPageI) {
       <AudioPlayer currentData={currentData} />
       <CategoryStateSection
         validCodes={validCodes}
-        allLevelsUnlocked={allLevelsUnlocked}
         categoryCode={params.id}
         userId={user.id}
         currentCode={currentData.id}
       />
-      <div
-        className={
-          "bg-injeu-blue h-min grow w-full inline-flex justify-center items-center text-3xl text-white"
-        }
-      >
-        00:00:00
-      </div>
+      <Timer />
       <div
         className={
           "h-min bg-injeu-light-red w-full flex items-center justify-start"

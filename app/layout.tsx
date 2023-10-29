@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { TimerProvider } from "@/providers/TimerProvider";
 
 const lucioleFont = localFont({
   src: "../public/fonts/Luciole-Bold.ttf",
@@ -9,6 +10,7 @@ const lucioleFont = localFont({
 export const metadata: Metadata = {
   title: "INJEU",
   description: "Le jeu INJEU.",
+  themeColor: "#CBBBA1",
 };
 export default async function RootLayout({
   children,
@@ -17,7 +19,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={lucioleFont.className}>{children}</body>
+      <TimerProvider>
+        <body className={lucioleFont.className}>{children}</body>
+      </TimerProvider>
     </html>
   );
 }

@@ -1,10 +1,13 @@
 import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
+import { useTimer } from "@/providers/TimerProvider";
 
 interface PlaySectionI {
   setSecondAudioEnded: Dispatch<SetStateAction<boolean>>;
 }
 export default function PlaySection({ setSecondAudioEnded }: PlaySectionI) {
+  const { startTimer } = useTimer();
+
   return (
     <>
       <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
@@ -14,7 +17,9 @@ export default function PlaySection({ setSecondAudioEnded }: PlaySectionI) {
         href={"/code"}
         className={"flex justify-center items-center w-full h-4/6 bg-injeu-red"}
       >
-        <span className={"text-9xl text-white"}>GO!</span>
+        <span onClick={startTimer} className={"text-9xl text-white"}>
+          GO!
+        </span>
       </Link>
       <div
         className={

@@ -62,13 +62,14 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
           setCode3("");
           setCode4("");
           setActiveCode(1);
-        }, 1300);
+        }, 1400);
         return toast.error("Erreur serveur, réessayez.");
       }
 
       void router.push(`/code/success/${currentData.id}`);
     } else {
       setError(true);
+      toast.error("Mauvais code, réessayez !");
 
       setTimeout(() => {
         setError(false);
@@ -77,7 +78,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         setCode3("");
         setCode4("");
         setActiveCode(1);
-      }, 1300);
+      }, 1400);
     }
   };
 
@@ -85,7 +86,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
     <main
       className={"flex flex-col w-full h-screen items-center justify-between"}
     >
-      <Toaster />
+      <Toaster toastOptions={{ duration: 1300 }} />
       <section
         className={
           "h-1/6 w-full bg-secondary flex items-center justify-center text-6xl"

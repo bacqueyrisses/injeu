@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CodesData } from "@/data/codes-data";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CodePage() {
   const router = useRouter();
@@ -28,13 +29,14 @@ export default function CodePage() {
       void router.push(`/category/${completeCode}`);
     } else {
       setError(true);
+      toast.error("Mauvais code, réessayez !");
 
       setTimeout(() => {
         setError(false);
         setCode1("");
         setCode2("");
         setActiveCode(1);
-      }, 1300);
+      }, 1400);
     }
   };
 
@@ -42,6 +44,7 @@ export default function CodePage() {
     <main
       className={"flex flex-col w-full h-screen items-center justify-between"}
     >
+      <Toaster toastOptions={{ duration: 1400 }} />
       <section
         className={
           "h-1/6 w-full bg-secondary flex items-center justify-center text-6xl"

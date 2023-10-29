@@ -8,6 +8,9 @@ const config: Config = {
     "./data/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    letterSpacing: {
+      wider: ".08em",
+    },
     extend: {
       lineHeight: {
         "extra-tight": "1.20",

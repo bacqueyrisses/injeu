@@ -8,12 +8,6 @@ interface ICategoryStateSection {
   userId: string;
   currentCode: number;
   validCodes: number[];
-  allLevelsUnlocked: {
-    id: string;
-    code: number;
-    name: string;
-    userId: string;
-  }[];
 }
 
 export default async function CategoryStateSection({
@@ -21,11 +15,27 @@ export default async function CategoryStateSection({
   categoryCode,
   userId,
   currentCode,
-  allLevelsUnlocked,
 }: ICategoryStateSection) {
-  useEffect(() => {
-    if (allLevelsUnlocked.length === validCodes.length) return redirect("/");
-  }, []);
+  const fetchUnlockedCategories = async () => {
+    const response = await fetch(
+      "http://localhost:3000/api/category/selectall",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          categoryCode,
+          userId,
+        }),
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+
+    if (!response.ok) throw new Error("Erreur serveur, réessayez.");
+
+    return await response.json();
+  };
+  const categoriesUnlocked = await fetchUnlockedCategories();
+
+  if (categoriesUnlocked.length === validCodes.length) redirect("/interlude");
 
   const fetchUnlockedCategory = async () => {
     const response = await fetch("http://localhost:3000/api/category/select", {
