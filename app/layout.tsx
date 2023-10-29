@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Viewport } from "next";
 import localFont from "next/font/local";
 import { TimerProvider } from "@/providers/TimerProvider";
 
@@ -10,6 +11,9 @@ const lucioleFont = localFont({
 export const metadata: Metadata = {
   title: "INJEU",
   description: "Le jeu INJEU.",
+};
+
+export const viewport: Viewport = {
   themeColor: "#CBBBA1",
 };
 export default async function RootLayout({
