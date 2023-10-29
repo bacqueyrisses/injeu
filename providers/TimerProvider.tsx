@@ -8,47 +8,62 @@ import React, {
   useState,
 } from "react";
 
-const TimerContext = createContext(null);
+const TimerContext = createContext<null | {
+  lapse: number;
+  running: boolean;
+  startTimer: () => void;
+  pauseTimer: () => void;
+  resetTimer: () => void;
+}>(null);
 
-export const TimerProvider = ({ children }) => {
-  function useLocalStorage(key, initialValue, parseValue = (v) => v) {
-    const [item, setValue] = useState(null);
+interface ITimerProvider {
+  children: React.ReactNode;
+}
+
+export const TimerProvider = ({ children }: ITimerProvider) => {
+  function useLocalStorage<T>(
+    key: string,
+    initialValue: T,
+    parseValue = (v: string) => initialValue,
+  ): [T, (newValue: T) => void] {
+    const [item, setValue] = useState<T>(initialValue);
 
     useEffect(() => {
       const storedValue = localStorage.getItem(key);
       if (storedValue !== null) {
         setValue(parseValue(storedValue));
       } else {
-        localStorage.setItem(key, initialValue);
+        localStorage.setItem(key, String(initialValue));
       }
     }, [key, initialValue, parseValue]);
 
-    const setItem = (newValue) => {
+    const setItem = (newValue: T) => {
       setValue(newValue);
-      localStorage.setItem(key, newValue);
+      localStorage.setItem(key, String(newValue));
     };
+
     return [item, setItem];
   }
-  const [lapse, setLapse] = useLocalStorage("timer:time", 0, (v) => Number(v));
 
-  const [running, setRunning] = useLocalStorage(
+  const [lapse, setLapse] = useLocalStorage<number>("timer:time", 0, (v) =>
+    Number(v),
+  );
+  const [running, setRunning] = useLocalStorage<boolean>(
     "timer:running",
     false,
     (string) => string === "true",
   );
-  const timerRef = useRef();
+  const timerRef = useRef<number | NodeJS.Timeout | undefined>();
 
   useEffect(() => {
     const startTime = Date.now() - lapse;
-    const timer = setInterval(() => {
+    timerRef.current = setInterval(() => {
       if (running) {
         setLapse(Math.round((Date.now() - startTime) / 1000) * 1000);
       }
     }, 1000);
 
-    timerRef.current = timer;
-
-    return () => clearInterval(timer);
+    return () => clearInterval(timerRef.current);
   }, [running, lapse, setLapse]);
 
   const pauseTimer = () => {
@@ -73,6 +88,7 @@ export const TimerProvider = ({ children }) => {
     </TimerContext.Provider>
   );
 };
+
 export const useTimer = () => {
   const context = useContext(TimerContext);
   if (!context) {

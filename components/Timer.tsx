@@ -6,10 +6,10 @@ import { useTimer } from "@/providers/TimerProvider";
 export default function Timer() {
   const { lapse } = useTimer();
 
-  function formatMillisecondsToTime(milliseconds) {
-    const hours = Math.floor(milliseconds / 3600000); // 1 hour = 3600000 milliseconds
-    const minutes = Math.floor((milliseconds % 3600000) / 60000); // 1 minute = 60000 milliseconds
-    const seconds = Math.floor((milliseconds % 60000) / 1000); // 1 second = 1000 milliseconds
+  function formatMillisecondsToTime(milliseconds: number) {
+    const hours = Math.floor(milliseconds / 3600000);
+    const minutes = Math.floor((milliseconds % 3600000) / 60000);
+    const seconds = Math.floor((milliseconds % 60000) / 1000);
 
     return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
       2,

@@ -6,7 +6,7 @@ import Timer from "@/components/Timer";
 
 export default function InterludePage() {
   const { pauseTimer } = useTimer();
-  const [play, { pause }] = useSound("/audios/0.mp3");
+  const [play] = useSound("/audios/0.mp3");
 
   useEffect(() => {
     pauseTimer();
