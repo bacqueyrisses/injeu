@@ -22,7 +22,7 @@ export default function Timer() {
         "bg-injeu-blue h-min grow w-full inline-flex justify-center items-center text-3xl text-white"
       }
     >
-      {lapse !== null ? (
+      {lapse !== 0 ? (
         <>
           <span className={"tracking-wider w-40"}>
             {formatMillisecondsToTime(lapse)}

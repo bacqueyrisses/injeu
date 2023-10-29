@@ -2,6 +2,7 @@
 
 import useSound from "use-sound";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 interface AudioDataI {
   currentData: {
@@ -25,7 +26,13 @@ export default function AudioPlayer({ currentData }: AudioDataI) {
 
   const handleAudio = () => {
     setAudioStarted((prev) => !prev);
-    audioStarted ? pause() : play();
+    if (audioStarted) {
+      pause();
+      toast.success("Piste audio en pause.");
+    } else {
+      play();
+      toast.success("Piste audio lancée !");
+    }
   };
   return (
     <button
@@ -34,6 +41,7 @@ export default function AudioPlayer({ currentData }: AudioDataI) {
       }
       onClick={handleAudio}
     >
+      <Toaster />
       {audioStarted ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

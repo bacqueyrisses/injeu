@@ -50,11 +50,11 @@ export default function CodePage() {
           "h-1/6 w-full bg-secondary flex items-center justify-center text-6xl"
         }
       >
-        <span>CODE</span>
+        <span>OBJET</span>
       </section>
       <section
         className={
-          "h-2/6 bg-injeu-blue w-full flex items-center justify-center gap-4"
+          "h-2/6 bg-injeu-light-red w-full flex items-center justify-center gap-4"
         }
       >
         <span
