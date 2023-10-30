@@ -76,7 +76,7 @@ export default function CodePage() {
         <button
           onClick={() => handleNumberClick("1")}
           className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
+            "bg-injeu-blue text-white inline-flex justify-center items-center"
           }
         >
           1
@@ -90,7 +90,7 @@ export default function CodePage() {
         <button
           onClick={() => handleNumberClick("3")}
           className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
+            "bg-injeu-blue text-white inline-flex justify-center items-center"
           }
         >
           3
@@ -104,7 +104,7 @@ export default function CodePage() {
         <button
           onClick={() => handleNumberClick("5")}
           className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
+            "bg-injeu-blue text-white inline-flex justify-center items-center"
           }
         >
           5
@@ -118,7 +118,7 @@ export default function CodePage() {
         <button
           onClick={() => handleNumberClick("7")}
           className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
+            "bg-injeu-blue text-white inline-flex justify-center items-center"
           }
         >
           7
@@ -132,7 +132,7 @@ export default function CodePage() {
         <button
           onClick={() => handleNumberClick("9")}
           className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
+            "bg-injeu-blue text-white inline-flex justify-center items-center"
           }
         >
           9
@@ -167,18 +167,16 @@ export default function CodePage() {
         <button
           onClick={() => handleNumberClick("0")}
           className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
+            "bg-injeu-blue text-white inline-flex justify-center items-center"
           }
         >
           0
         </button>
-        <button
+        <span
           className={
-            "inline-flex justify-center items-center bg-injeu-red opacity-50 cursor-no-drop"
+            "inline-flex justify-center items-center bg-injeu-light-red"
           }
-        >
-          ?
-        </button>
+        ></span>
       </section>
     </main>
   );
