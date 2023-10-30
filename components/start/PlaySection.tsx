@@ -16,9 +16,9 @@ export default function PlaySection({ setSecondAudioEnded }: PlaySectionI) {
       <Link
         href={"/code"}
         onClick={startTimer}
-        className={"flex justify-center items-center w-full h-4/6 bg-injeu-red"}
+        className={"flex justify-center items-center w-full h-4/6 bg-primary"}
       >
-        <span className={"text-9xl text-white"}>GO!</span>
+        <span className={"text-9xl text-white"}>GO !</span>
       </Link>
       <div
         className={

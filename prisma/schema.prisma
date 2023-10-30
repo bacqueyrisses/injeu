@@ -55,5 +55,6 @@ model Category {
   code   Int
   name   String
   userId String
+  group  Int
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -8,10 +8,10 @@ export async function POST(request: Request) {
 
   const response = await request.json();
 
-  const { categoryName, categoryCode } = response;
+  const { categoryName, categoryCode, group } = response;
 
   const validateCategory = await db.category.create({
-    data: { name: categoryName, userId: user.id, code: categoryCode },
+    data: { name: categoryName, userId: user.id, code: categoryCode, group },
   });
 
   return NextResponse.json(validateCategory);

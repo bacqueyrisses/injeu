@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useEffect } from "react";
 
 interface ICategoryStateSection {
   categoryCode: string;
   userId: string;
   currentCode: number;
   validCodes: number[];
+  group: number;
 }
 
 export default async function CategoryStateSection({
@@ -15,6 +15,7 @@ export default async function CategoryStateSection({
   categoryCode,
   userId,
   currentCode,
+  group,
 }: ICategoryStateSection) {
   const fetchUnlockedCategories = async () => {
     const response = await fetch(
@@ -23,6 +24,7 @@ export default async function CategoryStateSection({
         method: "POST",
         body: JSON.stringify({
           categoryCode,
+          group,
           userId,
         }),
         headers: { "Content-Type": "application/json" },
@@ -35,7 +37,11 @@ export default async function CategoryStateSection({
   };
   const categoriesUnlocked = await fetchUnlockedCategories();
 
-  if (categoriesUnlocked.length === validCodes.length) redirect("/interlude");
+  if (group === 1 && categoriesUnlocked.length === validCodes.length)
+    redirect("/interlude");
+
+  if (group === 2 && categoriesUnlocked.length === validCodes.length)
+    redirect("/mystery");
 
   const fetchUnlockedCategory = async () => {
     const response = await fetch("http://localhost:3000/api/category/select", {
@@ -43,6 +49,7 @@ export default async function CategoryStateSection({
       body: JSON.stringify({
         categoryCode,
         userId,
+        group,
       }),
       headers: { "Content-Type": "application/json" },
     });

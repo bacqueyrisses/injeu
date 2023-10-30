@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import useSound from "use-sound";
 import { CodesData } from "@/data/codes-data";
-import { useEffect } from "react";
 
 interface SuccessPageI {
   params: { id: string };

@@ -36,7 +36,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
       setActiveCode(4);
     } else {
       setCode4(number);
-      validateCode(Number(code1 + code2 + code3 + number));
+      void validateCode(Number(code1 + code2 + code3 + number));
     }
   };
 
@@ -49,6 +49,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
           body: JSON.stringify({
             categoryCode: currentData.id,
             categoryName: currentData.title,
+            group: currentData.group,
           }),
           headers: { "Content-Type": "application/json" },
         },

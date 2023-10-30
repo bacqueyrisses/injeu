@@ -19,7 +19,7 @@ export default function Timer() {
   return (
     <div
       className={
-        "bg-injeu-blue h-min grow w-full inline-flex justify-center items-center text-3xl text-white"
+        "bg-injeu-blue grow w-full inline-flex justify-center items-center text-3xl text-white"
       }
     >
       {lapse !== 0 ? (

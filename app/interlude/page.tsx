@@ -1,17 +1,93 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTimer } from "@/providers/TimerProvider";
 import useSound from "use-sound";
 import Timer from "@/components/Timer";
+import Link from "next/link";
 
 export default function InterludePage() {
-  const { pauseTimer } = useTimer();
-  const [play] = useSound("/audios/0.mp3");
+  const { pauseTimer, startTimer } = useTimer();
+  const [play, { pause }] = useSound("/audios/0.mp3");
+
+  const duration = 10 * 60 * 1000; // 10 minutes in milliseconds
+
+  const [startTime, setStartTime] = useState<number | null>(
+    localStorage.getItem("startTime")
+      ? parseInt(localStorage.getItem("startTime")!)
+      : null,
+  );
+
+  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
   useEffect(() => {
     pauseTimer();
-    play();
-  }, []);
+
+    const interval = setInterval(() => {
+      if (startTime === null) {
+        // If startTime is not set, set it and store it in localStorage
+        const currentTime = new Date().getTime();
+        setStartTime(currentTime);
+        localStorage.setItem("startTime", currentTime.toString());
+      } else {
+        // Calculate the time remaining
+        const currentTime = new Date().getTime();
+        const elapsedTime = currentTime - startTime;
+        const remainingTime = duration - elapsedTime;
+        setTimeRemaining(remainingTime);
+
+        if (elapsedTime >= duration) {
+          setTimeRemaining(0);
+          pause();
+          startTimer();
+          clearInterval(interval); // Stop monitoring once the action is triggered
+        }
+      }
+    }, 1000); // Check every 1 second
+
+    return () => clearInterval(interval); // Clean up the interval when the component unmounts
+  }, [duration, startTime]);
+
+  function formatMillisecondsToTime(milliseconds: number) {
+    const minutes = Math.floor((milliseconds % 3600000) / 60000);
+    const seconds = Math.floor((milliseconds % 60000) / 1000);
+
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0",
+    )}`;
+  }
+
+  function interludeStartSection() {
+    return (
+      <section
+        className={
+          "gap-20 h-4/6 w-full bg-injeu-light-green flex flex-col items-center justify-center text-8xl text-white"
+        }
+      >
+        <div className={"flex flex-col items-center justify-center"}>
+          <span>09</span>
+          <span>—</span>
+          <span>14</span>
+        </div>
+        <button onClick={() => play()} className={"text-2xl"}>
+          Lancer l'audio d'attente
+        </button>
+      </section>
+    );
+  }
+
+  function interludeEndSection() {
+    return (
+      <Link
+        href={"/code"}
+        className={
+          "gap-20 h-4/6 w-full bg-primary flex flex-col items-center justify-center text-8xl text-white"
+        }
+      >
+        GO !
+      </Link>
+    );
+  }
 
   return (
     <main
@@ -25,21 +101,29 @@ export default function InterludePage() {
         <span>ENTRE</span>
         <span>ACTE</span>
       </section>
+      {timeRemaining === 0 ? interludeEndSection() : interludeStartSection()}
       <section
         className={
-          "h-4/6 w-full bg-injeu-light-green flex flex-col items-center justify-center text-8xl text-white"
-        }
-      >
-        <span>09</span>
-        <span>—</span>
-        <span>14</span>
-      </section>
-      <section
-        className={
-          "bg-injeu-blue h-1/6 w-full inline-flex justify-center items-center text-5xl text-white"
+          "bg-injeu-blue h-1/6 w-full inline-flex flex-col justify-center items-center text-5xl text-white"
         }
       >
         <Timer />
+        {timeRemaining !== 0 && (
+          <div className={"text-3xl grow"}>
+            Revenez dans{" "}
+            <span
+              className={
+                "w-28 inline-flex justify-start items-center tracking-wider"
+              }
+            >
+              {timeRemaining !== null ? (
+                formatMillisecondsToTime(timeRemaining)
+              ) : (
+                <span>⏳⏳⏳</span>
+              )}
+            </span>
+          </div>
+        )}
       </section>
     </main>
   );

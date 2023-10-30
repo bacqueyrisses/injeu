@@ -16,7 +16,9 @@ export default async function CategoryPage({ params }: CategoryPageI) {
   const user = await getCurrentUser();
   if (!user) redirect("/start");
 
-  const validCodes = CodesData.map((item) => item.id);
+  const validCodes = CodesData.filter((item) => {
+    return item.group === currentData.group;
+  }).map((item) => item.id);
 
   return (
     <main
@@ -31,6 +33,7 @@ export default async function CategoryPage({ params }: CategoryPageI) {
         categoryCode={params.id}
         userId={user.id}
         currentCode={currentData.id}
+        group={currentData.group}
       />
       <Timer />
       <div

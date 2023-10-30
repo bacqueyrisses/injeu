@@ -1,13 +1,33 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CodesData } from "@/data/codes-data";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { getUnlockedCategories } from "@/app/actions";
 
+async function fetchData() {
+  return await getUnlockedCategories({ group: 1 });
+}
 export default function CodePage() {
   const router = useRouter();
-  const validCodes = CodesData.map((item) => item.id);
+
+  const [firstSectionUnlocked, setFirstSectionUnlocked] = useState(false);
+
+  useEffect(() => {
+    fetchData().then((v) => {
+      if (v?.length === firstValidCodes.length) setFirstSectionUnlocked(true);
+    });
+  }, []);
+
+  const firstValidCodes = CodesData.filter((item) => {
+    return item.group === 1;
+  }).map((item) => item.id);
+  const secondValidCodes = CodesData.filter((item) => {
+    return item.group === 2;
+  }).map((item) => item.id);
+  const validCodes = !firstSectionUnlocked ? firstValidCodes : secondValidCodes;
+
   const [code1, setCode1] = useState("");
   const [code2, setCode2] = useState("");
   const [activeCode, setActiveCode] = useState(1);
@@ -29,7 +49,10 @@ export default function CodePage() {
       void router.push(`/category/${completeCode}`);
     } else {
       setError(true);
-      toast.error("Mauvais code, réessayez !");
+
+      firstValidCodes.includes(completeCode)
+        ? toast.error("Code déjà validé, réessayez ! !")
+        : toast.error("Mauvais code, réessayez !");
 
       setTimeout(() => {
         setError(false);
@@ -59,14 +82,14 @@ export default function CodePage() {
       >
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error ? "bg-injeu-light-red transition-colors" : "bg-white"
+            error ? "bg-injeu-red transition-colors" : "bg-white"
           }`}
         >
           {code1}
         </span>
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error ? "bg-injeu-light-red transition-colors" : "bg-white"
+            error ? "bg-injeu-red transition-colors" : "bg-white"
           }`}
         >
           {code2}

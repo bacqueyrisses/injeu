@@ -3,16 +3,10 @@
 import useSound from "use-sound";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { ICodesData } from "@/data/codes-data";
 
 interface AudioDataI {
-  currentData: {
-    id: number;
-    title: string;
-    color: string;
-    audio: string;
-    hint: string;
-    secret: number;
-  };
+  currentData: ICodesData;
 }
 export default function AudioPlayer({ currentData }: AudioDataI) {
   const [audioStarted, setAudioStarted] = useState(false);
@@ -46,7 +40,7 @@ export default function AudioPlayer({ currentData }: AudioDataI) {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill={currentData.title === "RADIO" ? "black" : "white"}
+          fill={currentData.fill ? "black" : "white"}
           width={300}
           height={300}
         >
@@ -59,12 +53,11 @@ export default function AudioPlayer({ currentData }: AudioDataI) {
       ) : (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill={currentData.title === "RADIO" ? "black" : "white"}
+          fill={currentData.fill ? "black" : "white"}
           width={300}
           height={300}
           viewBox="0 0 24 24"
           strokeWidth="1.5"
-          stroke={currentData.title === "RADIO" ? "black" : "white"}
         >
           <path
             strokeLinecap="round"
