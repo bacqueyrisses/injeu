@@ -97,4 +97,22 @@ export const CodesData: ICodesData[] = [
     group: 2,
     fill: true,
   },
+  {
+    id: 999,
+    title: "PORTE CLEF",
+    color: "bg-injeu-purple",
+    audio: "/audios/0.mp3",
+    hint: "/audios/0.mp3",
+    secret: 1313,
+    group: 3,
+  },
+  {
+    id: 1234567890,
+    title: "MYSTERE",
+    color: "bg-black",
+    audio: "/audios/0.mp3",
+    hint: "/audios/0.mp3",
+    secret: 2539,
+    group: 4,
+  },
 ];

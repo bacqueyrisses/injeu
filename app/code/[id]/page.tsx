@@ -9,6 +9,21 @@ interface CodeSpecificPageI {
   params: { id: string };
 }
 export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
+  const variants = {
+    default: {
+      title: "CODE",
+      codeBg: "bg-injeu-blue",
+      buttons: "bg-injeu-light-green text-black",
+      exitBg: "bg-injeu-light-red",
+    },
+    mystery: {
+      title: "MYSTERY",
+      codeBg: "bg-black",
+      buttons: "bg-black text-white",
+      exitBg: "bg-white",
+    },
+  };
+
   const router = useRouter();
   const currentData = CodesData.find((data) => String(data.id) === params.id);
 
@@ -93,12 +108,18 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
           "h-1/6 w-full bg-secondary flex items-center justify-center text-6xl"
         }
       >
-        <span>CODE</span>
+        <span>
+          {currentData.group === 4
+            ? variants.mystery.title
+            : variants.default.title}
+        </span>
       </section>
       <section
-        className={
-          "h-2/6 bg-injeu-blue w-full flex items-center justify-center gap-4"
-        }
+        className={`h-2/6 w-full flex items-center justify-center gap-4 ${
+          currentData.group === 4
+            ? variants.mystery.codeBg
+            : variants.default.codeBg
+        }`}
       >
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
@@ -132,9 +153,11 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
       <section className={"h-3/6 w-full grid grid-cols-3 grid-rows-4 text-6xl"}>
         <button
           onClick={() => handleNumberClick("1")}
-          className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
-          }
+          className={`inline-flex justify-center items-center ${
+            currentData.group === 4
+              ? variants.mystery.buttons
+              : variants.default.buttons
+          }`}
         >
           1
         </button>
@@ -146,9 +169,11 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         </button>
         <button
           onClick={() => handleNumberClick("3")}
-          className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
-          }
+          className={`inline-flex justify-center items-center ${
+            currentData.group === 4
+              ? variants.mystery.buttons
+              : variants.default.buttons
+          }`}
         >
           3
         </button>
@@ -160,9 +185,11 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         </button>
         <button
           onClick={() => handleNumberClick("5")}
-          className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
-          }
+          className={`inline-flex justify-center items-center ${
+            currentData.group === 4
+              ? variants.mystery.buttons
+              : variants.default.buttons
+          }`}
         >
           5
         </button>
@@ -174,9 +201,11 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         </button>
         <button
           onClick={() => handleNumberClick("7")}
-          className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
-          }
+          className={`inline-flex justify-center items-center ${
+            currentData.group === 4
+              ? variants.mystery.buttons
+              : variants.default.buttons
+          }`}
         >
           7
         </button>
@@ -188,17 +217,21 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         </button>
         <button
           onClick={() => handleNumberClick("9")}
-          className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
-          }
+          className={`inline-flex justify-center items-center ${
+            currentData.group === 4
+              ? variants.mystery.buttons
+              : variants.default.buttons
+          }`}
         >
           9
         </button>
         <Link
           href={`/category/${currentData.id}`}
-          className={
-            "inline-flex justify-center items-center bg-injeu-light-red"
-          }
+          className={`inline-flex justify-center items-center ${
+            currentData.group === 4
+              ? variants.mystery.exitBg
+              : variants.default.exitBg
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -218,9 +251,11 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         </Link>
         <button
           onClick={() => handleNumberClick("0")}
-          className={
-            "bg-injeu-light-green inline-flex justify-center items-center"
-          }
+          className={`inline-flex justify-center items-center ${
+            currentData.group === 4
+              ? variants.mystery.buttons
+              : variants.default.buttons
+          }`}
         >
           0
         </button>

@@ -17,6 +17,7 @@ export default async function CategoryStateSection({
   currentCode,
   group,
 }: ICategoryStateSection) {
+  console.log(validCodes);
   const fetchUnlockedCategories = async () => {
     const response = await fetch(
       "http://localhost:3000/api/category/selectall",
@@ -41,7 +42,10 @@ export default async function CategoryStateSection({
     redirect("/interlude");
 
   if (group === 2 && categoriesUnlocked.length === validCodes.length)
-    redirect("/mystery");
+    redirect("/category/999");
+
+  if (group === 3 && categoriesUnlocked.length === validCodes.length)
+    redirect("/category/1234567890");
 
   const fetchUnlockedCategory = async () => {
     const response = await fetch("http://localhost:3000/api/category/select", {

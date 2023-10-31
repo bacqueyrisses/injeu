@@ -16,12 +16,16 @@ export default function CodePage() {
 
   useEffect(() => {
     fetchData().then((v) => {
-      if (v?.length === firstValidCodes.length) setFirstSectionUnlocked(true);
+      if (v?.length === firstValidCodesWithSecret.length)
+        setFirstSectionUnlocked(true);
     });
   }, []);
 
   const firstValidCodes = CodesData.filter((item) => {
     return item.group === 1;
+  }).map((item) => item.id);
+  const firstValidCodesWithSecret = CodesData.filter((item) => {
+    return item.group === 1 && item.secret;
   }).map((item) => item.id);
   const secondValidCodes = CodesData.filter((item) => {
     return item.group === 2;

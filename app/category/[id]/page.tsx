@@ -19,7 +19,6 @@ export default async function CategoryPage({ params }: CategoryPageI) {
   const validCodes = CodesData.filter((item) => {
     return item.group === currentData.group && item.secret;
   }).map((item) => item.id);
-
   return (
     <main
       className={"flex flex-col w-full h-screen items-center justify-between"}
