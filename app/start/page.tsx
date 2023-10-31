@@ -8,7 +8,6 @@ import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { z } from "zod";
 import toast, { Toaster } from "react-hot-toast";
-import { TimerProvider } from "@/providers/TimerProvider";
 
 export default function StartPage() {
   const searchParams = useSearchParams();
@@ -53,6 +52,7 @@ export default function StartPage() {
       try {
         schema.parse(teamName);
         setTeamSelected(true);
+        localStorage.clear();
         await signIn("credentials", {
           name: teamName,
           redirect: false,

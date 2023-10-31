@@ -30,9 +30,9 @@ export default function AudioPlayer({ currentData }: AudioDataI) {
   };
   return (
     <button
-      className={
-        "flex justify-center items-center w-full h-3/6 " + currentData.color
-      }
+      className={`flex justify-center items-center w-full ${
+        currentData.secret ? "h-3/6" : "h-4/6"
+      } ${currentData.color}`}
       onClick={handleAudio}
     >
       <Toaster />

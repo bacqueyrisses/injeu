@@ -4,10 +4,17 @@ import { useTimer } from "@/providers/TimerProvider";
 import useSound from "use-sound";
 import Timer from "@/components/Timer";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function InterludePage() {
+  const [audioStarted, setAudioStarted] = useState(false);
   const { pauseTimer, startTimer } = useTimer();
-  const [play, { pause }] = useSound("/audios/0.mp3");
+  const [play, { stop, pause }] = useSound("/audios/0.mp3", {
+    interrupt: true,
+    onend: () => {
+      setAudioStarted(false);
+    },
+  });
 
   const duration = 10 * 60 * 1000; // 10 minutes in milliseconds
 
@@ -37,9 +44,9 @@ export default function InterludePage() {
 
         if (elapsedTime >= duration) {
           setTimeRemaining(0);
-          pause();
+          stop();
           startTimer();
-          clearInterval(interval); // Stop monitoring once the action is triggered
+          clearInterval(interval);
         }
       }
     }, 1000); // Check every 1 second
@@ -58,6 +65,17 @@ export default function InterludePage() {
   }
 
   function interludeStartSection() {
+    const handleAudio = () => {
+      if (audioStarted) {
+        pause();
+        setAudioStarted(false);
+        toast.success("Audio d'attente en pause");
+      } else {
+        play();
+        setAudioStarted(true);
+        toast.success("Audio d'attente lancé");
+      }
+    };
     return (
       <section
         className={
@@ -69,8 +87,10 @@ export default function InterludePage() {
           <span>—</span>
           <span>14</span>
         </div>
-        <button onClick={() => play()} className={"text-2xl"}>
-          Lancer l'audio d'attente
+        <button onClick={handleAudio} className={"text-2xl"}>
+          {audioStarted
+            ? "Mettre en pause l'audio"
+            : "Lancer l'audio d'attente"}
         </button>
       </section>
     );
@@ -93,6 +113,7 @@ export default function InterludePage() {
     <main
       className={"flex flex-col w-full h-screen items-center justify-between"}
     >
+      <Toaster />
       <section
         className={
           "h-1/6 w-full bg-secondary flex items-center justify-center text-5xl flex-col gap-3"

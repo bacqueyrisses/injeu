@@ -3,8 +3,8 @@ export interface ICodesData {
   title: string;
   color: string;
   audio: string;
-  hint: string;
-  secret: number;
+  hint?: string;
+  secret?: number;
   group: number;
   fill?: boolean;
 }
@@ -47,6 +47,13 @@ export const CodesData: ICodesData[] = [
     group: 1,
   },
   {
+    id: 55,
+    title: "CREME",
+    color: "bg-injeu-blue",
+    audio: "/audios/0.mp3",
+    group: 1,
+  },
+  {
     id: 66,
     title: "PARTITION",
     color: "bg-injeu-light-red",
@@ -81,5 +88,13 @@ export const CodesData: ICodesData[] = [
     hint: "/audios/0.mp3",
     secret: 2400,
     group: 2,
+  },
+  {
+    id: 10,
+    title: "CHEQUIER",
+    color: "bg-injeu-dark-yellow",
+    audio: "/audios/0.mp3",
+    group: 2,
+    fill: true,
   },
 ];

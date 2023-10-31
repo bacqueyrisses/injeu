@@ -17,7 +17,7 @@ export default async function CategoryPage({ params }: CategoryPageI) {
   if (!user) redirect("/start");
 
   const validCodes = CodesData.filter((item) => {
-    return item.group === currentData.group;
+    return item.group === currentData.group && item.secret;
   }).map((item) => item.id);
 
   return (
@@ -28,13 +28,15 @@ export default async function CategoryPage({ params }: CategoryPageI) {
         <span>{currentData.title}</span>
       </div>
       <AudioPlayer currentData={currentData} />
-      <CategoryStateSection
-        validCodes={validCodes}
-        categoryCode={params.id}
-        userId={user.id}
-        currentCode={currentData.id}
-        group={currentData.group}
-      />
+      {currentData.secret && (
+        <CategoryStateSection
+          validCodes={validCodes}
+          categoryCode={params.id}
+          userId={user.id}
+          currentCode={currentData.id}
+          group={currentData.group}
+        />
+      )}
       <Timer />
       <div
         className={
