@@ -26,6 +26,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
 
   const router = useRouter();
   const currentData = CodesData.find((data) => String(data.id) === params.id);
+  const mysteryData = CodesData.find((data) => data.group === 4);
 
   const secretCode = currentData?.secret;
   const [code1, setCode1] = useState("");
@@ -57,6 +58,9 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
 
   const validateCode = async (completeCode: number) => {
     if (secretCode === completeCode) {
+      if (params.id === String(mysteryData?.id))
+        return router.push("/congratulation");
+
       const response = await fetch(
         "http://localhost:3000/api/category/create",
         {
