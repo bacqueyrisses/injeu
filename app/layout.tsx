@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Viewport } from "next";
 import localFont from "next/font/local";
 import { TimerProvider } from "@/providers/TimerProvider";
+import { ReactNode } from "react";
 
 const lucioleFont = localFont({
   src: "../public/fonts/Luciole-Bold.ttf",
@@ -19,7 +20,7 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html lang="en">

@@ -2,6 +2,7 @@
 
 import React, {
   createContext,
+  ReactNode,
   useContext,
   useEffect,
   useRef,
@@ -17,7 +18,7 @@ const TimerContext = createContext<null | {
 }>(null);
 
 interface ITimerProvider {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export const TimerProvider = ({ children }: ITimerProvider) => {

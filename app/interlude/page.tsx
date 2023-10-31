@@ -16,7 +16,7 @@ export default function InterludePage() {
     },
   });
 
-  const duration = 10 * 60 * 1000; // 10 minutes in milliseconds
+  const duration = 10 * 60 * 1000;
 
   const [startTime, setStartTime] = useState<number | null>(
     localStorage.getItem("startTime")
@@ -31,12 +31,10 @@ export default function InterludePage() {
 
     const interval = setInterval(() => {
       if (startTime === null) {
-        // If startTime is not set, set it and store it in localStorage
         const currentTime = new Date().getTime();
         setStartTime(currentTime);
         localStorage.setItem("startTime", currentTime.toString());
       } else {
-        // Calculate the time remaining
         const currentTime = new Date().getTime();
         const elapsedTime = currentTime - startTime;
         const remainingTime = duration - elapsedTime;
@@ -49,9 +47,9 @@ export default function InterludePage() {
           clearInterval(interval);
         }
       }
-    }, 1000); // Check every 1 second
+    }, 1000);
 
-    return () => clearInterval(interval); // Clean up the interval when the component unmounts
+    return () => clearInterval(interval);
   }, [duration, startTime]);
 
   function formatMillisecondsToTime(milliseconds: number) {
