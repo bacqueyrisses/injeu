@@ -3,13 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import useSound from "use-sound";
 import { CodesData } from "@/data/codes-data";
+import Timer from "@/components/Timer";
 
 interface SuccessPageI {
   params: { id: string };
 }
 export default function HintPage({ params }: SuccessPageI) {
   const currentData = CodesData.find((data) => String(data.id) === params.id);
-  if (!currentData) return notFound();
+  if (!currentData?.hint) return notFound();
 
   // page is redirected, hook isn't called conditionally
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -47,13 +48,7 @@ export default function HintPage({ params }: SuccessPageI) {
           </svg>
         </button>
       </section>
-      <div
-        className={
-          "bg-injeu-blue h-min grow w-full inline-flex justify-center items-center text-3xl text-white"
-        }
-      >
-        00:00:00
-      </div>
+      <Timer />
       <div
         className={
           "h-min bg-injeu-light-red w-full flex items-center justify-start"

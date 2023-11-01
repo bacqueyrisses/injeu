@@ -23,9 +23,7 @@ export default async function CategoryStateSection({
       {
         method: "POST",
         body: JSON.stringify({
-          categoryCode,
           group,
-          userId,
         }),
         headers: { "Content-Type": "application/json" },
       },
@@ -51,8 +49,6 @@ export default async function CategoryStateSection({
       method: "POST",
       body: JSON.stringify({
         categoryCode,
-        userId,
-        group,
       }),
       headers: { "Content-Type": "application/json" },
     });

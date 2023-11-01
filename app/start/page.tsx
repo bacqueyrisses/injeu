@@ -18,7 +18,6 @@ export default function StartPage() {
   const [teamSelected, setTeamSelected] = useState(false);
   const [teamName, setTeamName] = useState("");
 
-  // TODO State machine firstAudioState enum started/playing/ended
   const [firstAudioStarted, setFirstAudioStarted] = useState(false);
   const [secondAudioStarted, setSecondAudioStarted] = useState(false);
   const [firstAudioEnded, setFirstAudioEnded] = useState(false);

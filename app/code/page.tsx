@@ -4,18 +4,27 @@ import { CodesData } from "@/data/codes-data";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
-import { getUnlockedCategories } from "@/app/actions";
 
-async function fetchData() {
-  return await getUnlockedCategories({ group: 1 });
-}
+const fetchUnlockedCategories = async ({ group }: { group: number }) => {
+  const response = await fetch("http://localhost:3000/api/category/selectall", {
+    method: "POST",
+    body: JSON.stringify({
+      group,
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (!response.ok) throw new Error("Erreur serveur, réessayez.");
+
+  return await response.json();
+};
 export default function CodePage() {
   const router = useRouter();
 
   const [firstSectionUnlocked, setFirstSectionUnlocked] = useState(false);
 
   useEffect(() => {
-    fetchData().then((v) => {
+    fetchUnlockedCategories({ group: 1 }).then((v) => {
       if (v?.length === firstValidCodesWithSecret.length)
         setFirstSectionUnlocked(true);
     });
