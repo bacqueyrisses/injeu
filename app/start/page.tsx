@@ -8,10 +8,12 @@ import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { z } from "zod";
 import toast, { Toaster } from "react-hot-toast";
+import { useTimer } from "@/providers/TimerProvider";
 
 export default function StartPage() {
   const searchParams = useSearchParams();
   const play = searchParams.get("play");
+  const { resetTimer } = useTimer();
 
   const [teamSelected, setTeamSelected] = useState(false);
   const [teamName, setTeamName] = useState("");
@@ -52,6 +54,7 @@ export default function StartPage() {
       try {
         schema.parse(teamName);
         setTeamSelected(true);
+        resetTimer();
         localStorage.clear();
         await signIn("credentials", {
           name: teamName,

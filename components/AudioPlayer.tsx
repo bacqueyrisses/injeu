@@ -4,9 +4,10 @@ import useSound from "use-sound";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { ICodesData } from "@/data/codes-data";
+import { CongratulationDataCongratsType } from "@/data/congratulation-data";
 
 interface AudioDataI {
-  currentData: ICodesData;
+  currentData: ICodesData | CongratulationDataCongratsType;
 }
 export default function AudioPlayer({ currentData }: AudioDataI) {
   const [audioStarted, setAudioStarted] = useState(false);
@@ -31,7 +32,7 @@ export default function AudioPlayer({ currentData }: AudioDataI) {
   return (
     <button
       className={`flex justify-center items-center w-full ${
-        currentData.secret ? "h-3/6" : "h-4/6"
+        "secret" in currentData && currentData.secret ? "h-3/6" : "h-4/6"
       } ${currentData.color}`}
       onClick={handleAudio}
     >

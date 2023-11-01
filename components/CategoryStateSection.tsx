@@ -17,7 +17,6 @@ export default async function CategoryStateSection({
   currentCode,
   group,
 }: ICategoryStateSection) {
-  console.log(validCodes);
   const fetchUnlockedCategories = async () => {
     const response = await fetch(
       "http://localhost:3000/api/category/selectall",

@@ -1,12 +1,110 @@
 "use client";
+import AudioPlayer from "@/components/AudioPlayer";
+import { notFound } from "next/navigation";
+import { CongratulationData } from "@/data/congratulation-data";
+import { useState } from "react";
+import { useTimer } from "@/providers/TimerProvider";
+
 export default function CongratulationPage() {
+  const [creditsVisible, setCreditsVisible] = useState(false);
+  const { lapse } = useTimer();
+
+  const congratulationData = CongratulationData;
+  if (!congratulationData) return notFound();
+
+  function congratsSection() {
+    return (
+      <>
+        <section className="text-5xl w-full items-center justify-center h-1/6 flex">
+          <span>{congratulationData.congrats.title}</span>
+        </section>
+        <div className={"flex flex-col items-center justify-center gap-1"}>
+          <span>Vous avez complété le jeu en :</span> <span>{lapse}</span>
+        </div>
+        <AudioPlayer currentData={congratulationData.congrats} />
+        <section
+          className={
+            "h-min bg-injeu-light-red w-full flex items-center justify-start"
+          }
+        >
+          <button onClick={() => setCreditsVisible(true)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="3"
+              stroke="currentColor"
+              height={80}
+              width={80}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+              />
+            </svg>
+          </button>
+        </section>
+      </>
+    );
+  }
+
+  function creditsSection() {
+    return (
+      <>
+        <div className="text-5xl w-full items-center justify-center h-1/6 flex">
+          <span>{congratulationData.credits.title}</span>
+        </div>
+        <section
+          className={
+            "flex flex-col justify-start items-center gap-10 h-full basis-10/12"
+          }
+        >
+          <div className={"flex-col flex items-center justify-center gap-1"}>
+            <span className={"text-2xl"}>Direction Artistique</span>
+            <span className={"text-xl"}>
+              {congratulationData.credits.designer}
+            </span>
+          </div>
+          <div className={"flex-col flex items-center justify-center gap-1"}>
+            <span className={"text-2xl"}>Développement Web</span>
+            <span className={"text-xl"}>{congratulationData.credits.dev}</span>
+          </div>
+        </section>
+        <section
+          className={
+            "h-min bg-injeu-light-red w-full flex items-center justify-start"
+          }
+        >
+          <button onClick={() => setCreditsVisible(false)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="3"
+              stroke="currentColor"
+              height={80}
+              width={80}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+              />
+            </svg>
+          </button>
+        </section>
+      </>
+    );
+  }
+
   return (
     <main
-      className={"flex flex-col w-full h-screen items-center justify-between"}
+      className={
+        "bg-primary flex flex-col w-full h-screen items-center justify-between"
+      }
     >
-      <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
-        <span>FELICITATIONS</span>
-      </div>
+      {creditsVisible ? creditsSection() : congratsSection()}
     </main>
   );
 }

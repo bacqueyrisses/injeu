@@ -4,6 +4,7 @@ import { CodesData } from "@/data/codes-data";
 import { notFound, useRouter } from "next/navigation";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { useTimer } from "@/providers/TimerProvider";
 
 interface CodeSpecificPageI {
   params: { id: string };
@@ -25,6 +26,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
   };
 
   const router = useRouter();
+  const { pauseTimer } = useTimer();
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   const mysteryData = CodesData.find((data) => data.group === 4);
 
@@ -58,8 +60,10 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
 
   const validateCode = async (completeCode: number) => {
     if (secretCode === completeCode) {
-      if (params.id === String(mysteryData?.id))
+      if (params.id === String(mysteryData?.id)) {
+        pauseTimer();
         return router.push("/congratulation");
+      }
 
       const response = await fetch(
         "http://localhost:3000/api/category/create",
