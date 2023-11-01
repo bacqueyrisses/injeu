@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Timer from "@/components/Timer";
 
 interface SuccessPageI {
   params: { id: string };
@@ -29,13 +30,7 @@ export default function SuccessPage({ params }: SuccessPageI) {
           height={200}
         />
       </section>
-      <div
-        className={
-          "bg-injeu-blue h-min grow w-full inline-flex justify-center items-center text-3xl text-white"
-        }
-      >
-        00:00:00
-      </div>
+      <Timer />
       <div
         className={
           "h-min bg-injeu-light-red w-full flex items-center justify-start"
