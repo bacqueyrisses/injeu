@@ -5,6 +5,7 @@ import useSound from "use-sound";
 import Timer from "@/components/Timer";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { formatMillisecondsToTimeWithoutHours } from "@/utils/helpers";
 
 export default function InterludePage() {
   const [audioStarted, setAudioStarted] = useState(false);
@@ -16,7 +17,7 @@ export default function InterludePage() {
     },
   });
 
-  const duration = 10 * 60 * 1000;
+  const duration = 1 * 60 * 1000;
 
   const [startTime, setStartTime] = useState<number | null>(
     localStorage.getItem("startTime")
@@ -43,7 +44,6 @@ export default function InterludePage() {
         if (elapsedTime >= duration) {
           setTimeRemaining(0);
           stop();
-          startTimer();
           clearInterval(interval);
         }
       }
@@ -51,16 +51,6 @@ export default function InterludePage() {
 
     return () => clearInterval(interval);
   }, [duration, startTime]);
-
-  function formatMillisecondsToTime(milliseconds: number) {
-    const minutes = Math.floor((milliseconds % 3600000) / 60000);
-    const seconds = Math.floor((milliseconds % 60000) / 1000);
-
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
-      2,
-      "0",
-    )}`;
-  }
 
   function interludeStartSection() {
     const handleAudio = () => {
@@ -97,6 +87,7 @@ export default function InterludePage() {
   function interludeEndSection() {
     return (
       <Link
+        onClick={() => startTimer()}
         href={"/code"}
         className={
           "gap-20 h-4/6 w-full bg-primary flex flex-col items-center justify-center text-8xl text-white"
@@ -136,7 +127,7 @@ export default function InterludePage() {
               }
             >
               {timeRemaining !== null ? (
-                formatMillisecondsToTime(timeRemaining)
+                formatMillisecondsToTimeWithoutHours(timeRemaining)
               ) : (
                 <span>⏳⏳⏳</span>
               )}

@@ -12,13 +12,11 @@ interface CodeSpecificPageI {
 export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
   const variants = {
     default: {
-      title: "CODE",
       codeBg: "bg-injeu-blue",
       buttons: "bg-injeu-light-green text-black",
       exitBg: "bg-injeu-light-red",
     },
     mystery: {
-      title: "MYSTERY",
       codeBg: "bg-black",
       buttons: "bg-black text-white",
       exitBg: "bg-white",
@@ -116,11 +114,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
           "h-1/6 w-full bg-secondary flex items-center justify-center text-6xl"
         }
       >
-        <span>
-          {currentData.group === 4
-            ? variants.mystery.title
-            : variants.default.title}
-        </span>
+        <span>{currentData.group === 4 ? currentData.title : "CODE"}</span>
       </section>
       <section
         className={`h-2/6 w-full flex items-center justify-center gap-4 ${

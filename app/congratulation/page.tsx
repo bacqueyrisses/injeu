@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { CongratulationData } from "@/data/congratulation-data";
 import { useState } from "react";
 import { useTimer } from "@/providers/TimerProvider";
+import { formatMillisecondsToTime } from "@/utils/helpers";
 
 export default function CongratulationPage() {
   const [creditsVisible, setCreditsVisible] = useState(false);
@@ -18,13 +19,16 @@ export default function CongratulationPage() {
         <section className="text-5xl w-full items-center justify-center h-1/6 flex">
           <span>{congratulationData.congrats.title}</span>
         </section>
-        <div className={"flex flex-col items-center justify-center gap-1"}>
-          <span>Vous avez complété le jeu en :</span> <span>{lapse}</span>
+        <div
+          className={"flex flex-col items-center justify-center gap-1 text-xl"}
+        >
+          <span>Vous avez complété le jeu en :</span>{" "}
+          <span className={"text-2xl"}>{formatMillisecondsToTime(lapse)}</span>
         </div>
         <AudioPlayer currentData={congratulationData.congrats} />
         <section
           className={
-            "h-min bg-injeu-light-red w-full flex items-center justify-start"
+            "h-min bg-injeu-light-red w-full flex itetext-xlms-center justify-start"
           }
         >
           <button onClick={() => setCreditsVisible(true)}>

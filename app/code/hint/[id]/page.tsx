@@ -4,22 +4,39 @@ import { notFound } from "next/navigation";
 import useSound from "use-sound";
 import { CodesData } from "@/data/codes-data";
 import Timer from "@/components/Timer";
+import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
 
 interface SuccessPageI {
   params: { id: string };
 }
 export default function HintPage({ params }: SuccessPageI) {
+  const [audioStarted, setAudioStarted] = useState(false);
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   if (!currentData?.hint) return notFound();
 
   // page is redirected, hook isn't called conditionally
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [play] = useSound(currentData.hint);
+  const [play, { pause }] = useSound(currentData.hint);
+
+  const handleAudio = () => {
+    setAudioStarted((v) => !v);
+    if (audioStarted) {
+      toast.success("Indice en pause");
+      pause();
+      setAudioStarted(false);
+    } else {
+      toast.success("Indice en écoute !");
+      play();
+      setAudioStarted(true);
+    }
+  };
 
   return (
     <main
       className={"flex flex-col w-full h-screen items-center justify-between"}
     >
+      <Toaster />
       <section
         className={
           "bg-secondary w-full h-1/6 inline-flex justify-center items-center text-6xl"
@@ -30,7 +47,7 @@ export default function HintPage({ params }: SuccessPageI) {
       <section
         className={"h-4/6 w-full flex items-center justify-center bg-injeu-red"}
       >
-        <button onClick={() => play()}>
+        <button onClick={handleAudio}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
