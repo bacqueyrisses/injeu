@@ -17,7 +17,7 @@ export default function InterludePage() {
     },
   });
 
-  const duration = 1 * 60 * 1000;
+  const duration = 10 * 60 * 1000;
 
   const [startTime, setStartTime] = useState<number | null>(
     localStorage.getItem("startTime")

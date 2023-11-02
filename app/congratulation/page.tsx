@@ -23,7 +23,15 @@ export default function CongratulationPage() {
           className={"flex flex-col items-center justify-center gap-1 text-xl"}
         >
           <span>Vous avez complété le jeu en :</span>{" "}
-          <span className={"text-2xl"}>{formatMillisecondsToTime(lapse)}</span>
+          {lapse !== 0 ? (
+            <>
+              <span className={"tracking-wider"}>
+                {formatMillisecondsToTime(lapse)}
+              </span>
+            </>
+          ) : (
+            <span className={"animate-ping"}>⏱️</span>
+          )}
         </div>
         <AudioPlayer currentData={congratulationData.congrats} />
         <section
