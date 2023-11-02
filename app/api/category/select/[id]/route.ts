@@ -4,10 +4,10 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/server/auth";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } },
-) {
+interface IParams {
+  params: { id: string };
+}
+export async function GET(request: Request, { params }: IParams) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
 

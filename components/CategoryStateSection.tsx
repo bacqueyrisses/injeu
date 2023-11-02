@@ -49,7 +49,7 @@ export default function CategoryStateSection({
     categoriesUnlocked?.length,
     categoriesUnlockedError,
     group,
-    validCodes.length,
+    validCodes?.length,
   ]);
 
   return (

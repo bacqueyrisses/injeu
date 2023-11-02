@@ -3,10 +3,10 @@ import { db } from "@/server/db";
 import { getCurrentUser } from "@/server/auth";
 import { redirect } from "next/navigation";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } },
-) {
+interface IParams {
+  params: { id: string };
+}
+export async function GET(request: Request, { params }: IParams) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
 
