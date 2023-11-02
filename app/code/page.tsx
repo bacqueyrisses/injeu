@@ -6,13 +6,13 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
 const fetchUnlockedCategories = async ({ group }: { group: number }) => {
-  const response = await fetch("http://localhost:3000/api/category/selectall", {
-    method: "POST",
-    body: JSON.stringify({
-      group,
-    }),
-    headers: { "Content-Type": "application/json" },
-  });
+  const response = await fetch(
+    `http://localhost:3000/api/category/selectall${group}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    },
+  );
 
   if (!response.ok) throw new Error("Erreur serveur, réessayez.");
 

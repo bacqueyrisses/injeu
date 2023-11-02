@@ -15,7 +15,6 @@ export default function HintPage({ params }: SuccessPageI) {
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   if (!currentData?.hint) return notFound();
 
-  // page is redirected, hook isn't called conditionally
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [play, { pause }] = useSound(currentData.hint);
 

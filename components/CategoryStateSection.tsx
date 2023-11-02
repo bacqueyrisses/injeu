@@ -1,63 +1,56 @@
 "use client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import useSWR from "swr";
+import { fetcher } from "@/utils/fetcher";
+import toast from "react-hot-toast";
 
 interface ICategoryStateSection {
   categoryCode: string;
-  userId: string;
   currentCode: number;
   validCodes: number[];
   group: number;
 }
 
-export default async function CategoryStateSection({
+export default function CategoryStateSection({
   validCodes,
   categoryCode,
-  userId,
+
   currentCode,
   group,
 }: ICategoryStateSection) {
-  const fetchUnlockedCategories = async () => {
-    const response = await fetch(
-      "http://localhost:3000/api/category/selectall",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          group,
-        }),
-        headers: { "Content-Type": "application/json" },
-      },
-    );
+  const { data: categoryUnlocked, error: categoryUnlockedError } = useSWR(
+    `/api/category/select/${categoryCode}`,
+    fetcher,
+  );
 
-    if (!response.ok) throw new Error("Erreur serveur, réessayez.");
+  const { data: categoriesUnlocked, error: categoriesUnlockedError } = useSWR(
+    `/api/category/selectall/${categoryCode}`,
+    fetcher,
+  );
 
-    return await response.json();
-  };
-  const categoriesUnlocked = await fetchUnlockedCategories();
+  useEffect(() => {
+    categoryUnlockedError && toast.error("Erreur serveur, réessayez !");
+  }, [categoryUnlockedError]);
 
-  if (group === 1 && categoriesUnlocked.length === validCodes.length)
-    redirect("/interlude");
+  useEffect(() => {
+    categoriesUnlockedError && toast.error("Erreur serveur, réessayez !");
 
-  if (group === 2 && categoriesUnlocked.length === validCodes.length)
-    redirect("/category/999");
+    if (group === 1 && categoriesUnlocked?.length === validCodes.length)
+      redirect("/interlude");
 
-  if (group === 3 && categoriesUnlocked.length === validCodes.length)
-    redirect("/category/1234567890");
+    if (group === 2 && categoriesUnlocked?.length === validCodes.length)
+      redirect("/category/999");
 
-  const fetchUnlockedCategory = async () => {
-    const response = await fetch("http://localhost:3000/api/category/select", {
-      method: "POST",
-      body: JSON.stringify({
-        categoryCode,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (!response.ok) throw new Error("Erreur serveur, réessayez.");
-
-    return await response.json();
-  };
-  const categoryUnlocked = await fetchUnlockedCategory();
+    if (group === 3 && categoriesUnlocked?.length === validCodes.length)
+      redirect("/category/1234567890");
+  }, [
+    categoriesUnlocked?.length,
+    categoriesUnlockedError,
+    group,
+    validCodes.length,
+  ]);
 
   return (
     <>

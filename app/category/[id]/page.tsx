@@ -31,7 +31,6 @@ export default async function CategoryPage({ params }: CategoryPageI) {
         <CategoryStateSection
           validCodes={validCodes}
           categoryCode={params.id}
-          userId={user.id}
           currentCode={currentData.id}
           group={currentData.group}
         />

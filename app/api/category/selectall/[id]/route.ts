@@ -3,13 +3,14 @@ import { db } from "@/server/db";
 import { getCurrentUser } from "@/server/auth";
 import { redirect } from "next/navigation";
 
-export async function POST(request: Request) {
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
 
-  const response = await request.json();
-
-  const { group } = response;
+  const group = Number(params.id);
 
   const allLevelsUnlocked = await db.category.findMany({
     where: { group, userId: user.id },

@@ -4,12 +4,15 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/server/auth";
 
-export async function POST(request: Request) {
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
   const user = await getCurrentUser();
   if (!user) redirect("/");
 
-  const response = await request.json();
-  const { categoryCode } = response;
+  const categoryCode = params.id;
+
   const unlockedCategory = await db.category.findFirst({
     where: { userId: user.id, code: Number(categoryCode) },
   });
