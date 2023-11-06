@@ -8,7 +8,7 @@ import useSound from "use-sound";
 
 const fetchUnlockedCategories = async ({ group }: { group: number }) => {
   const response = await fetch(
-    `http://localhost:3000/api/category/selectall/${group}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/category/selectall/${group}`,
   );
 
   if (!response.ok) throw new Error("Erreur serveur, réessayez.");

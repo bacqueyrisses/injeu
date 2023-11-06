@@ -68,7 +68,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
       }
 
       const response = await fetch(
-        "http://localhost:3000/api/category/create",
+        `${process.env.NEXT_PUBLIC_URL}/api/category/create`,
         {
           method: "POST",
           body: JSON.stringify({

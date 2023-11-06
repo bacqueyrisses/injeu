@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         const response = await fetch(
-          "http://localhost:3000/api/team/findorcreate",
+          `${process.env.NEXT_PUBLIC_URL}/api/team/findorcreate`,
           {
             method: "POST",
             body: JSON.stringify(credentials),
