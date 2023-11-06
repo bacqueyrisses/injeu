@@ -6,8 +6,8 @@ import { CongratulationDataCongratsType } from "@/data/congratulation-data";
 
 interface AudioDataI {
   currentData: ICodesData | CongratulationDataCongratsType;
-  audioPlaying: boolean;
-  setAudioPlaying: Dispatch<SetStateAction<boolean>>;
+  audioPlaying?: boolean;
+  setAudioPlaying?: Dispatch<SetStateAction<boolean>>;
 }
 export default function AudioPlayer({
   currentData,
@@ -20,7 +20,7 @@ export default function AudioPlayer({
     onend: () => {
       setAudioEnded(true);
       setAudioStarted(false);
-      setAudioPlaying(false);
+      setAudioPlaying && setAudioPlaying(false);
     },
   });
 
@@ -34,7 +34,7 @@ export default function AudioPlayer({
       pause();
       toast.success("Piste audio en pause.");
     } else {
-      setAudioPlaying(true);
+      setAudioPlaying && setAudioPlaying(true);
       play();
       toast.success("Piste audio lancée !");
     }
