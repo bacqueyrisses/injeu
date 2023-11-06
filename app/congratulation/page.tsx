@@ -75,7 +75,7 @@ export default function CongratulationPage() {
           <div className={"text-center"}>
             Ce travail est issu du partenariat entre l'Institut des Jeunes
             Aveugles et l'Ecole Nationale Supérieure des Arts Décoratifs de
-            Paris
+            Paris.
           </div>
           <div className={"flex-col flex items-center justify-center gap-1"}>
             <span className={"text-2xl"}>Réalisation du projet</span>
