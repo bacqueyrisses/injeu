@@ -1,23 +1,32 @@
-"use client";
-
 import useSound from "use-sound";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { ICodesData } from "@/data/codes-data";
 import { CongratulationDataCongratsType } from "@/data/congratulation-data";
 
 interface AudioDataI {
   currentData: ICodesData | CongratulationDataCongratsType;
+  audioPlaying: boolean;
+  setAudioPlaying: Dispatch<SetStateAction<boolean>>;
 }
-export default function AudioPlayer({ currentData }: AudioDataI) {
+export default function AudioPlayer({
+  currentData,
+  audioPlaying,
+  setAudioPlaying,
+}: AudioDataI) {
   const [audioStarted, setAudioStarted] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
-  const [play, { pause }] = useSound(currentData.audio, {
+  const [play, { pause, stop }] = useSound(currentData.audio, {
     onend: () => {
       setAudioEnded(true);
       setAudioStarted(false);
+      setAudioPlaying(false);
     },
   });
+
+  useEffect(() => {
+    !audioPlaying && stop();
+  }, [audioPlaying]);
 
   const handleAudio = () => {
     setAudioStarted((prev) => !prev);
@@ -25,6 +34,7 @@ export default function AudioPlayer({ currentData }: AudioDataI) {
       pause();
       toast.success("Piste audio en pause.");
     } else {
+      setAudioPlaying(true);
       play();
       toast.success("Piste audio lancée !");
     }

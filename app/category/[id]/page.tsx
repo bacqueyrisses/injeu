@@ -1,3 +1,4 @@
+"use client";
 import { CodesData } from "@/data/codes-data";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
@@ -5,16 +6,15 @@ import AudioPlayer from "@/components/AudioPlayer";
 import { getCurrentUser } from "@/server/auth";
 import CategoryStateSection from "@/components/CategoryStateSection";
 import Timer from "@/components/Timer";
+import { useState } from "react";
 
 interface CategoryPageI {
   params: { id: string };
 }
-export default async function CategoryPage({ params }: CategoryPageI) {
+export default function CategoryPage({ params }: CategoryPageI) {
+  const [audioPlaying, setAudioPlaying] = useState(false);
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   if (!currentData) return notFound();
-
-  const user = await getCurrentUser();
-  if (!user) redirect("/start");
 
   const validCodes = CodesData.filter((item) => {
     return item.group === currentData.group && item.secret;
@@ -26,9 +26,14 @@ export default async function CategoryPage({ params }: CategoryPageI) {
       <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
         <span>{currentData.title}</span>
       </div>
-      <AudioPlayer currentData={currentData} />
+      <AudioPlayer
+        audioPlaying={audioPlaying}
+        setAudioPlaying={setAudioPlaying}
+        currentData={currentData}
+      />
       {currentData.secret && (
         <CategoryStateSection
+          setAudioPlaying={setAudioPlaying}
           validCodes={validCodes}
           categoryCode={params.id}
           currentCode={currentData.id}
@@ -42,6 +47,7 @@ export default async function CategoryPage({ params }: CategoryPageI) {
         }
       >
         <Link
+          onClick={() => setAudioPlaying(false)}
           href={{
             pathname: "/start",
             query: {

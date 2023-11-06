@@ -16,7 +16,7 @@ export default function HintPage({ params }: SuccessPageI) {
   if (!currentData?.hint) return notFound();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [play, { pause }] = useSound(currentData.hint);
+  const [play, { pause, stop }] = useSound(currentData.hint);
 
   const handleAudio = () => {
     setAudioStarted((v) => !v);
@@ -70,7 +70,7 @@ export default function HintPage({ params }: SuccessPageI) {
           "h-min bg-injeu-light-red w-full flex items-center justify-start"
         }
       >
-        <Link href={`/code/${params.id}`}>
+        <Link onClick={() => stop()} href={`/code/${params.id}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

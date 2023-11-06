@@ -1,12 +1,12 @@
-"use client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher";
 import toast from "react-hot-toast";
 
 interface ICategoryStateSection {
+  setAudioPlaying: Dispatch<SetStateAction<boolean>>;
   categoryCode: string;
   currentCode: number;
   validCodes: number[];
@@ -14,6 +14,7 @@ interface ICategoryStateSection {
 }
 
 export default function CategoryStateSection({
+  setAudioPlaying,
   validCodes,
   categoryCode,
   currentCode,
@@ -77,6 +78,7 @@ export default function CategoryStateSection({
         </div>
       ) : (
         <Link
+          onClick={() => setAudioPlaying(false)}
           href={`/code/${currentCode}`}
           className={
             "bg-injeu-red w-full h-1/6 inline-flex justify-center items-center"
