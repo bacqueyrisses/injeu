@@ -49,18 +49,23 @@ export default function StartPage() {
       setTeamName(e.target.value);
     };
     const handleTeamInit = async () => {
-      const schema = z.coerce.string().min(1).trim().toLowerCase();
+      const schema = z.coerce
+        .string()
+        .min(1)
+        .trim()
+        .toLowerCase()
+        .transform((value) => value.replaceAll(" ", ""));
 
       try {
-        schema.parse(teamName);
+        const newTeamName = schema.parse(teamName);
         setTeamSelected(true);
         resetTimer();
         localStorage.clear();
         await signIn("credentials", {
-          name: teamName,
+          name: newTeamName,
           redirect: false,
         });
-        toast.success(`Bienvenue ${teamName} !`);
+        toast.success(`Bienvenue ${newTeamName} !`);
       } catch (error) {
         return toast.error("Rentrez un nom d'équipe.");
       }
