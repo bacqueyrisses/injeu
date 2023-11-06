@@ -16,7 +16,6 @@ interface ICategoryStateSection {
 export default function CategoryStateSection({
   validCodes,
   categoryCode,
-
   currentCode,
   group,
 }: ICategoryStateSection) {
