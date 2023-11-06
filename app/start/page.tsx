@@ -50,6 +50,7 @@ export default function StartPage() {
     };
     const handleTeamInit = async () => {
       const schema = z.coerce.string().min(1).trim().toLowerCase();
+
       try {
         schema.parse(teamName);
         setTeamSelected(true);

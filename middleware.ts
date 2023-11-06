@@ -1,3 +1,5 @@
 export { default } from "next-auth/middleware";
 
-export const config = { matcher: ["/((?!start).*)(.+)"] };
+export const config = {
+  matcher: ["/category", "/code", "/congratulation", "/interlude"],
+};
