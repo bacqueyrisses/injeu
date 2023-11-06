@@ -64,9 +64,9 @@ export default function StartPage() {
 
       try {
         const newTeamName = schema.parse(teamName);
-        setTeamSelected(true);
         resetTimer();
         localStorage.clear();
+        setTeamSelected(true);
         await signIn("credentials", {
           name: newTeamName,
           redirect: false,

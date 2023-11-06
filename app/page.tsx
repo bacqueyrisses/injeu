@@ -29,10 +29,10 @@ export default function Home() {
             "flex flex-col items-center justify-center w-full h-4/6 bg-primary gap-10 text-center"
           }
         >
-          <span className={"text-6xl leading-extra-tight"}>
+          <span className={"text-5xl leading-extra-tight"}>
             Bienvenu dans l'expérience INJEU
           </span>
-          <span className={"text-3xl"}>Développé par NOM</span>
+          <span className={"text-2xl"}>Développé par NOM</span>
           <div className={"flex gap-10"}>
             <Image src={ensad} alt={"logo ENSAD"} width={100} height={100} />
             <Image src={inja} alt={"logo INJA"} width={100} height={100} />{" "}
@@ -42,10 +42,13 @@ export default function Home() {
         <Link
           href={"/start"}
           className={
-            "w-full h-2/6 bg-secondary flex justify-center items-center"
+            "w-full h-2/6 bg-secondary flex flex-col justify-center items-center gap-4"
           }
         >
           <span className={"md:text-6xl text-5xl"}>COMMENCER</span>
+          <span className={"md:hidden text-sm"}>
+            (N'oubliez pas de désactiver le mode silencieux)
+          </span>
         </Link>
       </section>
     </main>
