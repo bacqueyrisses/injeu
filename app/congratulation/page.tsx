@@ -69,14 +69,21 @@ export default function CongratulationPage() {
         </div>
         <section
           className={
-            "flex flex-col justify-start items-center gap-10 h-full basis-10/12"
+            "flex flex-col justify-start items-center gap-10 h-full basis-10/12 text-xl w-11/12 sm:w-2/4"
           }
         >
+          <div className={"text-center"}>
+            Ce travail est issu du partenariat entre l'Institut des Jeunes
+            Aveugles et l'Ecole Nationale Supérieure des Arts Décoratifs de
+            Paris
+          </div>
           <div className={"flex-col flex items-center justify-center gap-1"}>
-            <span className={"text-2xl"}>Direction Artistique</span>
-            <span className={"text-xl"}>
-              {congratulationData.credits.designer}
-            </span>
+            <span className={"text-2xl"}>Réalisation du projet</span>
+            {congratulationData.credits.creators.map((creator, index) => (
+              <span key={index} className={"text-xl"}>
+                {creator}
+              </span>
+            ))}
           </div>
           <div className={"flex-col flex items-center justify-center gap-1"}>
             <span className={"text-2xl"}>Développement Web</span>

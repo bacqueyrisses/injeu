@@ -8,6 +8,7 @@ interface IParams {
 }
 export async function GET(request: Request, { params }: IParams) {
   const user = await getCurrentUser();
+  console.log(user);
   if (!user) redirect("/");
 
   const group = Number(params.id);

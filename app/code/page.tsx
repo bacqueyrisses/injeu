@@ -4,14 +4,11 @@ import { CodesData } from "@/data/codes-data";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import useSound from "use-sound";
 
 const fetchUnlockedCategories = async ({ group }: { group: number }) => {
   const response = await fetch(
-    `http://localhost:3000/api/category/selectall${group}`,
-    {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    },
+    `http://localhost:3000/api/category/selectall/${group}`,
   );
 
   if (!response.ok) throw new Error("Erreur serveur, réessayez.");
@@ -20,6 +17,8 @@ const fetchUnlockedCategories = async ({ group }: { group: number }) => {
 };
 export default function CodePage() {
   const router = useRouter();
+  const [playCorrect] = useSound("/audios/VALIDE.mp4");
+  const [playWrong] = useSound("/audios/FAUX.mp4");
 
   const [firstSectionUnlocked, setFirstSectionUnlocked] = useState(false);
 
@@ -59,8 +58,10 @@ export default function CodePage() {
 
   const validateCode = (completeCode: number) => {
     if (validCodes.includes(completeCode)) {
+      playCorrect();
       void router.push(`/category/${completeCode}`);
     } else {
+      playWrong();
       setError(true);
 
       firstValidCodes.includes(completeCode)

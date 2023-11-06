@@ -5,6 +5,7 @@ import { notFound, useRouter } from "next/navigation";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { useTimer } from "@/providers/TimerProvider";
+import useSound from "use-sound";
 
 interface CodeSpecificPageI {
   params: { id: string };
@@ -24,6 +25,8 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
   };
 
   const router = useRouter();
+  const [playCorrect] = useSound("/audios/VALIDE.mp4");
+  const [playWrong] = useSound("/audios/FAUX.mp4");
   const { pauseTimer } = useTimer();
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   const mysteryData = CodesData.find((data) => data.group === 4);
@@ -58,6 +61,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
 
   const validateCode = async (completeCode: number) => {
     if (secretCode === completeCode) {
+      playCorrect();
       if (params.id === String(mysteryData?.id)) {
         pauseTimer();
         return router.push("/congratulation");
@@ -87,9 +91,9 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         }, 1400);
         return toast.error("Erreur serveur, réessayez.");
       }
-
       void router.push(`/code/success/${currentData.id}`);
     } else {
+      playWrong();
       setError(true);
       toast.error("Mauvais code, réessayez !");
 

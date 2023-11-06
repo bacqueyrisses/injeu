@@ -1,4 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
+import ensad from "@/public/logos/ensad.jpg";
+import inja from "@/public/logos/inja.jpg";
+import psl from "@/public/logos/psl.jpg";
 
 export default function Home() {
   return (
@@ -22,14 +26,18 @@ export default function Home() {
       >
         <div
           className={
-            "flex flex-col items-center justify-center w-full h-4/6 bg-primary gap-16 text-center"
+            "flex flex-col items-center justify-center w-full h-4/6 bg-primary gap-10 text-center"
           }
         >
           <span className={"text-6xl leading-extra-tight"}>
             Bienvenu dans l'expérience INJEU
           </span>
           <span className={"text-3xl"}>Développé par NOM</span>
-          <span className={"text-3xl"}>LOGOS</span>
+          <div className={"flex gap-10"}>
+            <Image src={ensad} alt={"logo ENSAD"} width={100} height={100} />
+            <Image src={inja} alt={"logo INJA"} width={100} height={100} />{" "}
+            <Image src={psl} alt={"logo PSL"} width={100} height={100} />
+          </div>
         </div>
         <Link
           href={"/start"}

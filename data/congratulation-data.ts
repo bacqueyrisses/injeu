@@ -8,7 +8,7 @@ export interface ICongratulationData {
   congrats: CongratulationDataCongratsType;
   credits: {
     title: string;
-    designer: string;
+    creators: string[];
     dev: string;
   };
 }
@@ -16,12 +16,12 @@ export const CongratulationData: ICongratulationData = {
   congrats: {
     title: "FELICITATION",
     color: "bg-primary",
-    audio: "/audios/0.mp3",
+    audio: "/audios/OUTRO.mp4",
     fill: true,
   },
   credits: {
     title: "Crédits",
-    designer: "Leo BARBOTIN",
-    dev: "Enzo BACQUEYRISSES",
+    creators: ["Olga Descloud", "Zoé Arnaud", "Leo Barbotin"],
+    dev: "Enzo Bacqueyrisses",
   },
 };

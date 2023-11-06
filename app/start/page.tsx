@@ -23,13 +23,13 @@ export default function StartPage() {
   const [firstAudioEnded, setFirstAudioEnded] = useState(false);
   const [secondAudioEnded, setSecondAudioEnded] = useState(false);
 
-  const [playFirst, { pause: pauseFirst }] = useSound("/audios/0.mp3", {
+  const [playFirst, { pause: pauseFirst }] = useSound("/audios/INTRO.mp4", {
     onend: () => {
       setFirstAudioEnded(true);
       setFirstAudioStarted(false);
     },
   });
-  const [playSecond, { pause: pauseSecond }] = useSound("/audios/1.mp3", {
+  const [playSecond, { pause: pauseSecond }] = useSound("/audios/REGLES.mp3", {
     onend: () => {
       setSecondAudioEnded(true);
       setSecondAudioStarted(false);
