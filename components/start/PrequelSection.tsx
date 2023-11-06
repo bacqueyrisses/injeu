@@ -2,14 +2,20 @@ import { Dispatch, SetStateAction } from "react";
 
 interface PrequelSectionI {
   handleSecondAudio: () => void;
+  stopSecondAudio: () => void;
   secondAudioStarted: boolean;
   setFirstAudioEnded: Dispatch<SetStateAction<boolean>>;
 }
 export default function PrequelSection({
   handleSecondAudio,
+  stopSecondAudio,
   secondAudioStarted,
   setFirstAudioEnded,
 }: PrequelSectionI) {
+  const handleBackButton = () => {
+    setFirstAudioEnded(false);
+    stopSecondAudio();
+  };
   return (
     <>
       <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
@@ -56,7 +62,7 @@ export default function PrequelSection({
           "h-1/6 bg-injeu-light-red w-full flex items-center justify-start"
         }
       >
-        <button onClick={() => setFirstAudioEnded(false)}>
+        <button onClick={handleBackButton}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -2,15 +2,18 @@ import Link from "next/link";
 
 interface WelcomeSectionI {
   handleFirstAudio: () => void;
+  stopFirstAudio: () => void;
   firstAudioStarted: boolean;
 }
 export default function WelcomeSection({
   handleFirstAudio,
+  stopFirstAudio,
   firstAudioStarted,
 }: WelcomeSectionI) {
   return (
     <>
       <Link
+        onClick={() => stopFirstAudio()}
         href={"/"}
         className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary"
       >
