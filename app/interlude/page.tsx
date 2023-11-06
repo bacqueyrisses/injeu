@@ -19,13 +19,17 @@ export default function InterludePage() {
 
   const duration = 10 * 60 * 1000;
 
-  const [startTime, setStartTime] = useState<number | null>(
-    localStorage.getItem("startTime")
-      ? parseInt(localStorage.getItem("startTime")!)
-      : null,
-  );
+  const [startTime, setStartTime] = useState<number | null>(null);
 
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
+
+  useEffect(() => {
+    setStartTime(
+      localStorage.getItem("startTime")
+        ? parseInt(localStorage.getItem("startTime")!)
+        : null,
+    );
+  }, []);
 
   useEffect(() => {
     pauseTimer();
