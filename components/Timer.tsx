@@ -15,12 +15,14 @@ export default function Timer() {
     >
       {lapse !== 0 ? (
         <>
-          <span className={"tracking-wider w-40"}>
+          <span className={"tracking-wider w-40 -mb-1"}>
             {formatMillisecondsToTime(lapse)}
           </span>
         </>
       ) : (
-        <span className={"opacity-50 tracking-wider w-40"}>00:00:00</span>
+        <span className={"opacity-50 tracking-wider w-40  -mb-1"}>
+          00:00:00
+        </span>
       )}
     </div>
   );
