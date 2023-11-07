@@ -36,11 +36,6 @@ export default function CategoryPage({ params }: CategoryPageI) {
   }).map((item) => item.id);
 
   const handleBackButton = () => {
-    console.log(
-      currentData.group,
-      categoriesUnlocked?.length,
-      validCodes.length,
-    );
     setAudioPlaying(false);
 
     if (
