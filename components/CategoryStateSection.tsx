@@ -27,7 +27,7 @@ export default function CategoryStateSection({
   );
 
   useEffect(() => {
-    categoryUnlockedError && toast.error("Erreur serveur, réessayez !");
+    categoryUnlockedError && toast.error("Erreur serveur, réessayez ! 2");
   }, [categoryUnlockedError]);
 
   useEffect(() => {

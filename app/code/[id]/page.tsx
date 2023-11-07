@@ -91,7 +91,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
           setCode4("");
           setActiveCode(1);
         }, 1400);
-        return toast.error("Erreur serveur, réessayez.");
+        return toast.error("Erreur serveur, réessayez. 1");
       }
       void router.push(`/code/success/${currentData.id}`);
     } else {

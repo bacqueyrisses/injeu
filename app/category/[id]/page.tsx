@@ -26,7 +26,7 @@ export default function CategoryPage({ params }: CategoryPageI) {
   );
 
   useEffect(() => {
-    categoriesUnlockedError && toast.error("Erreur serveur, réessayez !");
+    categoriesUnlockedError && toast.error("Erreur serveur, réessayez ! 3");
   }, [categoriesUnlockedError]);
 
   if (!currentData) return notFound();

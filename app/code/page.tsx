@@ -11,7 +11,7 @@ const fetchUnlockedCategories = async ({ group }: { group: number }) => {
     `${process.env.NEXT_PUBLIC_URL}/api/category/selectall/${group}`,
   );
 
-  if (!response.ok) throw new Error("Erreur serveur, réessayez.");
+  if (!response.ok) throw new Error("Erreur serveur, réessayez. 4");
 
   return await response.json();
 };

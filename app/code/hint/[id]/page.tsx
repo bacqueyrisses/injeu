@@ -63,6 +63,7 @@ export default function HintPage({ params }: SuccessPageI) {
             stroke={audioLoaded ? "white" : "gray"}
             height={350}
             width={350}
+            className={audioStarted ? "animate-pulse" : ""}
           >
             <path
               strokeLinecap="round"
