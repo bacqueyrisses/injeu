@@ -10,7 +10,7 @@ import { formatMillisecondsToTimeWithoutHours } from "@/utils/helpers";
 export default function InterludePage() {
   const [audioStarted, setAudioStarted] = useState(false);
   const { pauseTimer, startTimer } = useTimer();
-  const [play, { stop, pause }] = useSound("/audios/0.mp3", {
+  const [play, { stop, pause }] = useSound("/audios/ENTRACTE.mp4", {
     interrupt: true,
     onend: () => {
       setAudioStarted(false);
