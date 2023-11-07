@@ -99,7 +99,7 @@ export default function CodePage() {
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
             error
-              ? "bg-injeu-light-red transition-colors"
+              ? "bg-injeu-red transition-colors"
               : correct
               ? "bg-injeu-pop-green transition-colors"
               : "bg-white"
@@ -110,7 +110,7 @@ export default function CodePage() {
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
             error
-              ? "bg-injeu-light-red transition-colors"
+              ? "bg-injeu-red transition-colors"
               : correct
               ? "bg-injeu-pop-green transition-colors"
               : "bg-white"

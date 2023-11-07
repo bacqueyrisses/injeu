@@ -30,7 +30,7 @@ export default function CongratulationPage() {
               </span>
             </>
           ) : (
-            <span className={"animate-ping"}>⏱️</span>
+            <span className={"animate-spin"}>⏱️</span>
           )}
         </div>
         <AudioPlayer currentData={congratulationData.congrats} />

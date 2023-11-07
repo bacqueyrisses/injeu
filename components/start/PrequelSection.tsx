@@ -45,12 +45,12 @@ export default function PrequelSection({
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="white"
+            fill={secondAudioLoaded ? "white" : "gray"}
+            stroke={secondAudioLoaded ? "white" : "gray"}
             width={300}
             height={300}
             viewBox="0 0 24 24"
             strokeWidth="1.5"
-            stroke="white"
           >
             <path
               strokeLinecap="round"
