@@ -44,6 +44,7 @@ export default function CodePage() {
   const [code2, setCode2] = useState("");
   const [activeCode, setActiveCode] = useState(1);
   const [error, setError] = useState(false);
+  const [correct, setCorrect] = useState(false);
 
   const handleNumberClick = (number: string) => {
     if (code2 && activeCode === 2) return;
@@ -58,6 +59,7 @@ export default function CodePage() {
 
   const validateCode = (completeCode: number) => {
     if (validCodes.includes(completeCode)) {
+      setCorrect(true);
       playCorrect();
       void router.push(`/category/${completeCode}`);
     } else {
@@ -96,14 +98,22 @@ export default function CodePage() {
       >
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error ? "bg-injeu-red transition-colors" : "bg-white"
+            error
+              ? "bg-injeu-light-red transition-colors"
+              : correct
+              ? "bg-injeu-pop-green transition-colors"
+              : "bg-white"
           }`}
         >
           {code1}
         </span>
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error ? "bg-injeu-red transition-colors" : "bg-white"
+            error
+              ? "bg-injeu-light-red transition-colors"
+              : correct
+              ? "bg-injeu-pop-green transition-colors"
+              : "bg-white"
           }`}
         >
           {code2}

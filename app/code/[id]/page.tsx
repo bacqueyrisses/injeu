@@ -38,6 +38,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
   const [code4, setCode4] = useState("");
   const [activeCode, setActiveCode] = useState(1);
   const [error, setError] = useState(false);
+  const [correct, setCorrect] = useState(false);
 
   if (!currentData) return notFound();
 
@@ -61,6 +62,7 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
 
   const validateCode = async (completeCode: number) => {
     if (secretCode === completeCode) {
+      setCorrect(true);
       playCorrect();
       if (params.id === String(mysteryData?.id)) {
         pauseTimer();
@@ -136,21 +138,33 @@ export default function CodeSpecificPage({ params }: CodeSpecificPageI) {
         </span>
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error ? "bg-injeu-light-red transition-colors" : "bg-white"
+            error
+              ? "bg-injeu-light-red transition-colors"
+              : correct
+              ? "bg-injeu-pop-green transition-colors"
+              : "bg-white"
           }`}
         >
           {code2}
         </span>
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error ? "bg-injeu-light-red transition-colors" : "bg-white"
+            error
+              ? "bg-injeu-light-red transition-colors"
+              : correct
+              ? "bg-injeu-pop-green transition-colors"
+              : "bg-white"
           }`}
         >
           {code3}
         </span>
         <span
           className={`text-7xl w-1/5 h-2/3 inline-flex justify-center items-center ${
-            error ? "bg-injeu-light-red transition-colors" : "bg-white"
+            error
+              ? "bg-injeu-light-red transition-colors"
+              : correct
+              ? "bg-injeu-pop-green transition-colors"
+              : "bg-white"
           }`}
         >
           {code4}
