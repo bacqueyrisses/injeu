@@ -32,11 +32,11 @@ export default function Home() {
           <span className={"text-5xl leading-extra-tight"}>
             Bienvenu dans l'expérience INJEU
           </span>
-          <span className={"text-2xl"}>Développé par NOM</span>
-          <div className={"flex gap-10"}>
-            <Image src={ensad} alt={"logo ENSAD"} width={100} height={100} />
-            <Image src={inja} alt={"logo INJA"} width={100} height={100} />{" "}
-            <Image src={psl} alt={"logo PSL"} width={100} height={100} />
+          <span className={"text-2xl"}>Développé par</span>
+          <div className={"flex gap-8"}>
+            <Image src={ensad} alt={"logo ENSAD"} width={80} height={80} />
+            <Image src={inja} alt={"logo INJA"} width={80} height={80} />{" "}
+            <Image src={psl} alt={"logo PSL"} width={80} height={80} />
           </div>
         </div>
         <Link

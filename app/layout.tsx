@@ -23,7 +23,7 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={"over"}>
       <TimerProvider>
         <body className={lucioleFont.className}>{children}</body>
       </TimerProvider>

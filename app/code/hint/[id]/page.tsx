@@ -16,7 +16,11 @@ export default function HintPage({ params }: SuccessPageI) {
   if (!currentData?.hint) return notFound();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [play, { pause, stop }] = useSound(currentData.hint);
+  const [play, { pause, stop }] = useSound(currentData.hint, {
+    onend: () => {
+      setAudioStarted(false);
+    },
+  });
 
   const handleAudio = () => {
     setAudioStarted((v) => !v);
