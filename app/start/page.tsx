@@ -88,7 +88,7 @@ export default function StartPage() {
     return (
       <section
         className={
-          "flex w-full h-full flex-col items-center justify-center text-center gap-16 bg-primary"
+          "flex w-full h-full flex-col items-center justify-center text-center gap-16 bg-primary overflow-hidden"
         }
       >
         <span className={"text-5xl px-20 leading-extra-tight"}>
@@ -137,7 +137,7 @@ export default function StartPage() {
 
     return (
       <section
-        className={"flex w-full h-screen flex-col items-center justify-between"}
+        className={"flex w-full h-full flex-col items-center justify-between"}
       >
         <Toaster position="bottom-center" />
         {!firstAudioEnded ? (

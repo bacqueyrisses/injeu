@@ -6,7 +6,8 @@ import { TimerProvider } from "@/providers/TimerProvider";
 import { ReactNode } from "react";
 
 const lucioleFont = localFont({
-  src: "../public/fonts/Luciole-Bold.ttf",
+  src: "../public/fonts/Luciole-Bold.woff2",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={""}>
+    <html lang="en" className={lucioleFont.className}>
       <TimerProvider>
         <body>{children}</body>
       </TimerProvider>

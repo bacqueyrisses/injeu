@@ -132,7 +132,7 @@ export default function InterludePage() {
       >
         <Timer />
         {timeRemaining !== 0 && (
-          <div className="relative items-center text-3xl w-[270px] grow">
+          <div className="relative items-center text-3xl w-[325px] grow">
             {timeRemaining !== null ? (
               <span>
                 Revenez dans{" "}
