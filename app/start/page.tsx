@@ -118,20 +118,20 @@ export default function StartPage() {
       setFirstAudioStarted((prev) => !prev);
       if (firstAudioStarted) {
         pauseFirst();
-        toast.success("Piste audio en pause.");
+        toast.success("Introduction en pause");
       } else {
         playFirst();
-        toast.success("Piste audio lancée !");
+        toast.success("Introduction lancée !");
       }
     };
     const handleSecondAudio = () => {
       setSecondAudioStarted((prev) => !prev);
       if (secondAudioStarted) {
         pauseSecond();
-        toast.success("Piste audio en pause.");
+        toast.success("Règles en pause");
       } else {
         playSecond();
-        toast.success("Piste audio lancée !");
+        toast.success("Règles en écoute !");
       }
     };
 

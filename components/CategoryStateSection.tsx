@@ -28,40 +28,34 @@ export default function CategoryStateSection({
     fetcher,
   );
 
-  const { data: categoriesUnlocked, error: categoriesUnlockedError } = useSWR(
-    `/api/category/selectall/${categoryCode}`,
-    fetcher,
-  );
-
   useEffect(() => {
     categoryUnlockedError && toast.error("Erreur serveur, réessayez !");
-    categoriesUnlockedError && toast.error("Erreur serveur, réessayez !");
-  }, [categoryUnlockedError, categoriesUnlockedError]);
+  }, [categoryUnlockedError]);
 
   useEffect(() => {
     categoryUnlocked && setUnlocked(true);
     categoryUnlocked === null && setUnlocked(false);
   }, [categoryUnlocked]);
 
-  useEffect(() => {
-    if (
-      currentData.group === 1 &&
-      categoriesUnlocked?.length === validCodes.length
-    )
-      redirect("/interlude");
-
-    if (
-      currentData.group === 2 &&
-      categoriesUnlocked?.length === validCodes.length
-    )
-      redirect("/category/999");
-
-    if (
-      currentData.group === 3 &&
-      categoriesUnlocked?.length === validCodes.length
-    )
-      redirect("/category/1234567890");
-  }, [categoriesUnlocked?.length, currentData.group, validCodes?.length]);
+  // useEffect(() => {
+  //   if (
+  //     currentData.group === 1 &&
+  //     categoriesUnlocked?.length === validCodes.length
+  //   )
+  //     redirect("/interlude");
+  //
+  //   if (
+  //     currentData.group === 2 &&
+  //     categoriesUnlocked?.length === validCodes.length
+  //   )
+  //     redirect("/category/999");
+  //
+  //   if (
+  //     currentData.group === 3 &&
+  //     categoriesUnlocked?.length === validCodes.length
+  //   )
+  //     redirect("/category/1234567890");
+  // }, [categoriesUnlocked?.length, currentData.group, validCodes?.length]);
 
   return (
     <>

@@ -36,7 +36,7 @@ export default function AudioPlayer({
     setAudioStarted((prev) => !prev);
     if (audioStarted) {
       pause();
-      toast.success("Piste audio en pause.");
+      toast.success("Piste audio en pause");
     } else {
       setAudioPlaying && setAudioPlaying(true);
       play();
