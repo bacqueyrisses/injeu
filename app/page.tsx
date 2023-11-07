@@ -29,11 +29,11 @@ export default function Home() {
             "flex flex-col items-center justify-center w-full h-4/6 bg-primary gap-10 text-center"
           }
         >
-          <span className={"text-5xl leading-extra-tight"}>
+          <span className={"px-4 text-5xl leading-extra-tight"}>
             Bienvenu dans l'expérience INJEU
           </span>
           <span className={"text-2xl"}>Développé par</span>
-          <div className={"flex gap-8"}>
+          <div className={"flex gap-8 px-4"}>
             <Image src={ensad} alt={"logo ENSAD"} width={80} height={80} />
             <Image src={inja} alt={"logo INJA"} width={80} height={80} />{" "}
             <Image src={psl} alt={"logo PSL"} width={80} height={80} />
