@@ -4,11 +4,13 @@ interface WelcomeSectionI {
   handleFirstAudio: () => void;
   stopFirstAudio: () => void;
   firstAudioStarted: boolean;
+  firstAudioLoaded: boolean;
 }
 export default function WelcomeSection({
   handleFirstAudio,
   stopFirstAudio,
   firstAudioStarted,
+  firstAudioLoaded,
 }: WelcomeSectionI) {
   return (
     <>
@@ -24,6 +26,7 @@ export default function WelcomeSection({
           "flex justify-center items-center w-full h-5/6 bg-injeu-blue"
         }
         onClick={handleFirstAudio}
+        disabled={!firstAudioLoaded}
       >
         {firstAudioStarted ? (
           <svg

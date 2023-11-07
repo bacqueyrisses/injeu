@@ -22,10 +22,15 @@ export default function StartPage() {
   const [secondAudioStarted, setSecondAudioStarted] = useState(false);
   const [firstAudioEnded, setFirstAudioEnded] = useState(false);
   const [secondAudioEnded, setSecondAudioEnded] = useState(false);
+  const [firstAudioLoaded, setFirstAudioLoaded] = useState(false);
+  const [secondAudioLoaded, setSecondAudioLoaded] = useState(false);
 
   const [playFirst, { pause: pauseFirst, stop: stopFirst }] = useSound(
     "/audios/INTRO.mp4",
     {
+      onload: () => {
+        setFirstAudioLoaded(true);
+      },
       onend: () => {
         setFirstAudioEnded(true);
         setFirstAudioStarted(false);
@@ -35,6 +40,9 @@ export default function StartPage() {
   const [playSecond, { pause: pauseSecond, stop: stopSecond }] = useSound(
     "/audios/REGLES.mp3",
     {
+      onload: () => {
+        setSecondAudioLoaded(true);
+      },
       onend: () => {
         setSecondAudioEnded(true);
         setSecondAudioStarted(false);
@@ -48,7 +56,7 @@ export default function StartPage() {
       setFirstAudioEnded(true);
       setSecondAudioEnded(true);
     }
-  }, []);
+  }, [play]);
 
   function teamSection() {
     const handleTeamNameChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -108,11 +116,23 @@ export default function StartPage() {
   function introSection() {
     const handleFirstAudio = () => {
       setFirstAudioStarted((prev) => !prev);
-      firstAudioStarted ? pauseFirst() : playFirst();
+      if (firstAudioStarted) {
+        pauseFirst();
+        toast.success("Piste audio en pause.");
+      } else {
+        playFirst();
+        toast.success("Piste audio lancée !");
+      }
     };
     const handleSecondAudio = () => {
       setSecondAudioStarted((prev) => !prev);
-      secondAudioStarted ? pauseSecond() : playSecond();
+      if (secondAudioStarted) {
+        pauseSecond();
+        toast.success("Piste audio en pause.");
+      } else {
+        playSecond();
+        toast.success("Piste audio lancée !");
+      }
     };
 
     return (
@@ -125,6 +145,7 @@ export default function StartPage() {
             handleFirstAudio={handleFirstAudio}
             stopFirstAudio={stopFirst}
             firstAudioStarted={firstAudioStarted}
+            firstAudioLoaded={firstAudioLoaded}
           />
         ) : !secondAudioEnded ? (
           <PrequelSection
@@ -132,6 +153,7 @@ export default function StartPage() {
             handleSecondAudio={handleSecondAudio}
             stopSecondAudio={stopSecond}
             setFirstAudioEnded={setFirstAudioEnded}
+            secondAudioLoaded={secondAudioLoaded}
           />
         ) : (
           <PlaySection setSecondAudioEnded={setSecondAudioEnded} />

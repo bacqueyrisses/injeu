@@ -5,11 +5,13 @@ interface PrequelSectionI {
   stopSecondAudio: () => void;
   secondAudioStarted: boolean;
   setFirstAudioEnded: Dispatch<SetStateAction<boolean>>;
+  secondAudioLoaded: boolean;
 }
 export default function PrequelSection({
   handleSecondAudio,
   stopSecondAudio,
   secondAudioStarted,
+  secondAudioLoaded,
   setFirstAudioEnded,
 }: PrequelSectionI) {
   const handleBackButton = () => {
@@ -24,6 +26,7 @@ export default function PrequelSection({
       <button
         className={"flex justify-center items-center w-full h-4/6 bg-injeu-red"}
         onClick={handleSecondAudio}
+        disabled={!secondAudioLoaded}
       >
         {secondAudioStarted ? (
           <svg
