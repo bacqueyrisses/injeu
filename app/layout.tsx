@@ -12,7 +12,7 @@ const lucioleFont = localFont({
 
 export const metadata: Metadata = {
   title: "INJEU",
-  description: "Le jeu INJEU.",
+  description: "Essayez l'expérience INJEU.",
 };
 
 export const viewport: Viewport = {
