@@ -6,12 +6,17 @@ import Timer from "@/components/Timer";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { formatMillisecondsToTimeWithoutHours } from "@/utils/helpers";
+import { spans } from "next/dist/build/webpack/plugins/profiling-plugin";
 
 export default function InterludePage() {
   const [audioStarted, setAudioStarted] = useState(false);
+  const [audioLoaded, setAudioLoaded] = useState(false);
   const { pauseTimer, startTimer } = useTimer();
   const [play, { stop, pause }] = useSound("/audios/ENTRACTE.mp4", {
     interrupt: true,
+    onload: () => {
+      setAudioLoaded(true);
+    },
     onend: () => {
       setAudioStarted(false);
     },
@@ -79,7 +84,11 @@ export default function InterludePage() {
           <span>—</span>
           <span>14</span>
         </div>
-        <button onClick={handleAudio} className={"text-2xl"}>
+        <button
+          disabled={!audioLoaded}
+          onClick={handleAudio}
+          className={`text-2xl ${audioLoaded ? "text-white" : "opacity-50"}`}
+        >
           {audioStarted
             ? "Mettre en pause l'audio"
             : "Lancer l'audio d'attente"}
@@ -123,19 +132,15 @@ export default function InterludePage() {
       >
         <Timer />
         {timeRemaining !== 0 && (
-          <div className={"text-3xl grow"}>
-            Revenez dans{" "}
-            <span
-              className={
-                "w-28 inline-flex justify-start items-center tracking-wider"
-              }
-            >
-              {timeRemaining !== null ? (
-                formatMillisecondsToTimeWithoutHours(timeRemaining)
-              ) : (
-                <span>⏳⏳⏳</span>
-              )}
-            </span>
+          <div className="relative items-center text-3xl w-[270px] grow">
+            {timeRemaining !== null ? (
+              <span>
+                Revenez dans{" "}
+                {formatMillisecondsToTimeWithoutHours(timeRemaining)}
+              </span>
+            ) : (
+              <span className={"opacity-50"}>Revenez dans 00:00</span>
+            )}
           </div>
         )}
       </section>

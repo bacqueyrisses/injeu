@@ -20,7 +20,7 @@ export default function Timer() {
           </span>
         </>
       ) : (
-        <span className={"animate-spin"}>⏱️</span>
+        <span className={"opacity-50 tracking-wider w-40"}>00:00:00</span>
       )}
     </div>
   );
