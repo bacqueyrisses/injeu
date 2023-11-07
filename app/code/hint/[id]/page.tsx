@@ -12,11 +12,15 @@ interface SuccessPageI {
 }
 export default function HintPage({ params }: SuccessPageI) {
   const [audioStarted, setAudioStarted] = useState(false);
+  const [audioLoaded, setAudioLoaded] = useState(false);
   const currentData = CodesData.find((data) => String(data.id) === params.id);
   if (!currentData?.hint) return notFound();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [play, { pause, stop }] = useSound(currentData.hint, {
+    onload: () => {
+      setAudioLoaded(true);
+    },
     onend: () => {
       setAudioStarted(false);
     },
@@ -50,13 +54,13 @@ export default function HintPage({ params }: SuccessPageI) {
       <section
         className={"h-4/6 w-full flex items-center justify-center bg-injeu-red"}
       >
-        <button onClick={handleAudio}>
+        <button onClick={handleAudio} disabled={!audioLoaded}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
-            stroke="white"
+            stroke={audioLoaded ? "white" : "gray"}
             height={350}
             width={350}
           >

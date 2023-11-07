@@ -16,7 +16,11 @@ export default function AudioPlayer({
 }: AudioDataI) {
   const [audioStarted, setAudioStarted] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
+  const [audioLoaded, setAudioLoaded] = useState(false);
   const [play, { pause, stop }] = useSound(currentData.audio, {
+    onload: () => {
+      setAudioLoaded(true);
+    },
     onend: () => {
       setAudioEnded(true);
       setAudioStarted(false);
@@ -39,19 +43,21 @@ export default function AudioPlayer({
       toast.success("Piste audio lancée !");
     }
   };
+
   return (
     <button
       className={`flex justify-center items-center w-full ${
         "secret" in currentData && currentData.secret ? "h-3/6" : "h-4/6"
       } ${currentData.color}`}
       onClick={handleAudio}
+      disabled={!audioLoaded}
     >
       <Toaster />
       {audioStarted ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill={currentData.fill ? "black" : "white"}
+          fill={!audioLoaded ? "gray" : currentData.fill ? "black" : "white"}
           width={300}
           height={300}
         >
