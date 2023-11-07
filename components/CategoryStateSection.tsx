@@ -11,14 +11,12 @@ interface ICategoryStateSection {
   setAudioPlaying: Dispatch<SetStateAction<boolean>>;
   audioPlaying: boolean;
   categoryCode: string;
-  validCodes: number[];
   currentData: ICodesData;
 }
 
 export default function CategoryStateSection({
   setAudioPlaying,
   audioPlaying,
-  validCodes,
   categoryCode,
   currentData,
 }: ICategoryStateSection) {
@@ -36,26 +34,6 @@ export default function CategoryStateSection({
     categoryUnlocked && setUnlocked(true);
     categoryUnlocked === null && setUnlocked(false);
   }, [categoryUnlocked]);
-
-  // useEffect(() => {
-  //   if (
-  //     currentData.group === 1 &&
-  //     categoriesUnlocked?.length === validCodes.length
-  //   )
-  //     redirect("/interlude");
-  //
-  //   if (
-  //     currentData.group === 2 &&
-  //     categoriesUnlocked?.length === validCodes.length
-  //   )
-  //     redirect("/category/999");
-  //
-  //   if (
-  //     currentData.group === 3 &&
-  //     categoriesUnlocked?.length === validCodes.length
-  //   )
-  //     redirect("/category/1234567890");
-  // }, [categoriesUnlocked?.length, currentData.group, validCodes?.length]);
 
   return (
     <>

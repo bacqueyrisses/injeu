@@ -69,7 +69,6 @@ export default function CategoryPage({ params }: CategoryPageI) {
       {currentData.secret ? (
         <CategoryStateSection
           setAudioPlaying={setAudioPlaying}
-          validCodes={validCodes}
           categoryCode={params.id}
           currentData={currentData}
           audioPlaying={audioPlaying}
@@ -107,6 +106,7 @@ export default function CategoryPage({ params }: CategoryPageI) {
           </button>
         ) : (
           <Link
+            onClick={() => setAudioPlaying(false)}
             href={{
               pathname: "/start",
               query: {
