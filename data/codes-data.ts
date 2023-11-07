@@ -3,6 +3,7 @@ export interface ICodesData {
   title: string;
   color: string;
   audio: string;
+  secondAudio?: string;
   hint?: string;
   secret?: number;
   group: number;
@@ -14,6 +15,7 @@ export const CodesData: ICodesData[] = [
     title: "RADIO",
     color: "bg-injeu-light-gray",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/FAUX.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 5879,
     group: 1,
@@ -24,6 +26,7 @@ export const CodesData: ICodesData[] = [
     title: "AGENDA",
     color: "bg-injeu-light-green",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 3746,
     group: 1,
@@ -33,6 +36,7 @@ export const CodesData: ICodesData[] = [
     title: "BOBINE",
     color: "bg-injeu-light-blue",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 2416,
     group: 1,
@@ -42,6 +46,7 @@ export const CodesData: ICodesData[] = [
     title: "CHAUSSON",
     color: "bg-injeu-brown",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 2006,
     group: 1,
@@ -58,6 +63,7 @@ export const CodesData: ICodesData[] = [
     title: "PARTITION",
     color: "bg-injeu-light-red",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 1200,
     group: 2,
@@ -67,6 +73,7 @@ export const CodesData: ICodesData[] = [
     title: "FOULARD",
     color: "bg-injeu-pop-green",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 1550,
     group: 2,
@@ -76,6 +83,7 @@ export const CodesData: ICodesData[] = [
     title: "COUTEAU",
     color: "bg-injeu-gray",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 4335,
     group: 2,
@@ -85,6 +93,7 @@ export const CodesData: ICodesData[] = [
     title: "PORTE CLEF",
     color: "bg-injeu-purple",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 2400,
     group: 2,
@@ -102,6 +111,7 @@ export const CodesData: ICodesData[] = [
     title: "PORTE CLEF",
     color: "bg-injeu-purple",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 1313,
     group: 3,
@@ -111,6 +121,7 @@ export const CodesData: ICodesData[] = [
     title: "MYSTERE",
     color: "bg-black",
     audio: "/audios/RADIO.mp4",
+    secondAudio: "/audios/RADIO.mp4",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 2539,
     group: 4,

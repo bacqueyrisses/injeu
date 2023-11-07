@@ -26,18 +26,20 @@ export default function CategoryPage({ params }: CategoryPageI) {
       <div className="text-6xl w-full items-center justify-center h-1/6 flex bg-secondary">
         <span>{currentData.title}</span>
       </div>
-      <AudioPlayer
-        audioPlaying={audioPlaying}
-        setAudioPlaying={setAudioPlaying}
-        currentData={currentData}
-      />
-      {currentData.secret && (
+
+      {currentData.secret ? (
         <CategoryStateSection
           setAudioPlaying={setAudioPlaying}
           validCodes={validCodes}
           categoryCode={params.id}
-          currentCode={currentData.id}
-          group={currentData.group}
+          currentData={currentData}
+          audioPlaying={audioPlaying}
+        />
+      ) : (
+        <AudioPlayer
+          audioPlaying={audioPlaying}
+          setAudioPlaying={setAudioPlaying}
+          currentData={currentData}
         />
       )}
       <Timer />
