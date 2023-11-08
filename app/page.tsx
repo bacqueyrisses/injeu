@@ -8,7 +8,9 @@ export default function Home() {
   return (
     <main className="flex flex-col w-full items-center justify-between">
       <section
-        className={"flex w-full h-screen flex-col items-center justify-between"}
+        className={
+          "flex w-full h-[100vh] flex-col items-center justify-between"
+        }
       >
         <div className="w-full items-center justify-between h-1/4 flex bg-secondary" />
 
