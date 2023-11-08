@@ -15,13 +15,19 @@ export default function StartPage() {
   const play = searchParams.get("play");
   const { resetTimer } = useTimer();
 
-  const [teamSelected, setTeamSelected] = useState(false);
+  const [teamSelected, setTeamSelected] = useState(() => {
+    return play === "true";
+  });
   const [teamName, setTeamName] = useState("");
 
   const [firstAudioStarted, setFirstAudioStarted] = useState(false);
   const [secondAudioStarted, setSecondAudioStarted] = useState(false);
-  const [firstAudioEnded, setFirstAudioEnded] = useState(false);
-  const [secondAudioEnded, setSecondAudioEnded] = useState(false);
+  const [firstAudioEnded, setFirstAudioEnded] = useState(() => {
+    return play === "true";
+  });
+  const [secondAudioEnded, setSecondAudioEnded] = useState(() => {
+    return play === "true";
+  });
   const [firstAudioLoaded, setFirstAudioLoaded] = useState(false);
   const [secondAudioLoaded, setSecondAudioLoaded] = useState(false);
 
@@ -49,14 +55,6 @@ export default function StartPage() {
       },
     },
   );
-
-  useEffect(() => {
-    if (play === "true") {
-      setTeamSelected(true);
-      setFirstAudioEnded(true);
-      setSecondAudioEnded(true);
-    }
-  }, [play]);
 
   function teamSection() {
     const handleTeamNameChange = async (e: ChangeEvent<HTMLInputElement>) => {
