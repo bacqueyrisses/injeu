@@ -22,7 +22,9 @@ export default function Home() {
       </section>
 
       <section
-        className={"flex w-full h-screen flex-col items-center justify-between"}
+        className={
+          "flex w-full h-[100vh] flex-col items-center justify-between"
+        }
       >
         <div
           className={
