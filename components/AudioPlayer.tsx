@@ -8,11 +8,13 @@ interface AudioDataI {
   currentData: ICodesData | CongratulationDataCongratsType;
   audioPlaying?: boolean;
   setAudioPlaying?: Dispatch<SetStateAction<boolean>>;
+  className?: string;
 }
 export default function AudioPlayer({
   currentData,
   audioPlaying,
   setAudioPlaying,
+  className,
 }: AudioDataI) {
   const [audioStarted, setAudioStarted] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
@@ -48,7 +50,7 @@ export default function AudioPlayer({
     <button
       className={`flex justify-center items-center w-full ${
         "secret" in currentData && currentData.secret ? "h-3/6" : "h-4/6"
-      } ${currentData.color}`}
+      } ${currentData.color} ${className}`}
       onClick={handleAudio}
       disabled={!audioLoaded}
     >

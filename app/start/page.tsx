@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import useSound from "use-sound";
 import PlaySection from "@/components/start/PlaySection";
 import PrequelSection from "@/components/start/PrequelSection";

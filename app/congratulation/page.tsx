@@ -13,13 +13,13 @@ export default function CongratulationPage() {
   const congratulationData = CongratulationData;
   if (!congratulationData) return notFound();
 
-  function congratsSection() {
+  function congratsFirstSection() {
     return (
       <>
         <section className="text-5xl w-full items-center justify-center h-1/6 flex">
           <span>{congratulationData.congrats.title}</span>
         </section>
-        <div
+        <section
           className={"flex flex-col items-center justify-center gap-1 text-xl"}
         >
           <span>Vous avez complété le jeu en :</span>{" "}
@@ -32,44 +32,20 @@ export default function CongratulationPage() {
           ) : (
             <span className={"tracking-wider opacity-50"}>00:00:00</span>
           )}
-        </div>
-        <AudioPlayer currentData={congratulationData.congrats} />
-        <section
-          className={
-            "h-min bg-injeu-light-red w-full flex itetext-xlms-center justify-start"
-          }
-        >
-          <button onClick={() => setCreditsVisible(true)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="3"
-              stroke="currentColor"
-              height={80}
-              width={80}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
-              />
-            </svg>
-          </button>
         </section>
       </>
     );
   }
 
-  function creditsSection() {
+  function creditsFirstSection() {
     return (
       <>
-        <div className="text-5xl w-full items-center justify-center h-1/6 flex">
+        <section className="text-5xl w-full items-center justify-center h-1/6 flex">
           <span>{congratulationData.credits.title}</span>
-        </div>
+        </section>
         <section
           className={
-            "flex flex-col justify-start items-center gap-10 h-full basis-10/12 text-xl w-11/12 sm:w-2/4"
+            "flex flex-col items-center gap-10 text-xl w-11/12 sm:w-2/4 grow"
           }
         >
           <div className={"text-center"}>
@@ -90,29 +66,6 @@ export default function CongratulationPage() {
             <span className={"text-xl"}>{congratulationData.credits.dev}</span>
           </div>
         </section>
-        <section
-          className={
-            "h-min bg-injeu-light-red w-full flex items-center justify-start"
-          }
-        >
-          <button onClick={() => setCreditsVisible(false)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="3"
-              stroke="currentColor"
-              height={80}
-              width={80}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
-              />
-            </svg>
-          </button>
-        </section>
       </>
     );
   }
@@ -123,7 +76,34 @@ export default function CongratulationPage() {
         "bg-primary flex flex-col w-full h-screen items-center justify-between"
       }
     >
-      {creditsVisible ? creditsSection() : congratsSection()}
+      {creditsVisible ? creditsFirstSection() : congratsFirstSection()}
+      <AudioPlayer
+        className={creditsVisible ? "hidden" : "block"}
+        currentData={congratulationData.congrats}
+      />
+      <section
+        className={
+          "h-min bg-injeu-light-red w-full flex items-center text-xl justify-start"
+        }
+      >
+        <button onClick={() => setCreditsVisible(!creditsVisible)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="3"
+            stroke="currentColor"
+            height={80}
+            width={80}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+            />
+          </svg>
+        </button>
+      </section>
     </main>
   );
 }
