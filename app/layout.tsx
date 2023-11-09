@@ -13,6 +13,9 @@ const lucioleFont = localFont({
 export const metadata: Metadata = {
   title: "INJEU",
   description: "Essayez l'expérience INJEU.",
+  openGraph: {
+    images: "/opengraph-image.png",
+  },
 };
 
 export const viewport: Viewport = {
