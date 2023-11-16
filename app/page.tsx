@@ -39,7 +39,7 @@ export default function Home() {
           <span className={"text-2xl"}>Développé par</span>
           <div className={"flex gap-8 px-4"}>
             <Image src={ensad} alt={"logo ENSAD"} width={80} height={80} />
-            <Image src={inja} alt={"logo INJA"} width={80} height={80} />{" "}
+            <Image src={inja} alt={"logo INJA"} width={80} height={80} />
             <Image src={psl} alt={"logo PSL"} width={80} height={80} />
           </div>
         </div>

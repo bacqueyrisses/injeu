@@ -70,7 +70,7 @@ export default function InterludePage() {
       } else {
         play();
         setAudioStarted(true);
-        toast.success("Audio d'attente lancé");
+        toast.success("Audio d'attente lancé !");
       }
     };
     return (
