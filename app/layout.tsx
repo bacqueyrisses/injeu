@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/styles/tailwind.css";
 import type { Metadata } from "next";
 import { Viewport } from "next";
 import localFont from "next/font/local";
