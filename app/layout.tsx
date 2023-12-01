@@ -27,7 +27,7 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={lucioleFont.className}>
+    <html lang="en" className={`${lucioleFont.className} antialiased`}>
       <TimerProvider>
         <body>{children}</body>
       </TimerProvider>
