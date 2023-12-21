@@ -17,7 +17,6 @@ const fetchUnlockedCategories = async ({ group }: { group: number }) => {
 };
 export default function CodePage() {
   const router = useRouter();
-  const [playCorrect] = useSound("/audios/VALIDE.mp4");
   const [playWrong] = useSound("/audios/FAUX.mp4");
 
   const [firstSectionUnlocked, setFirstSectionUnlocked] = useState(false);
@@ -60,7 +59,6 @@ export default function CodePage() {
   const validateCode = (completeCode: number) => {
     if (validCodes.includes(completeCode)) {
       setCorrect(true);
-      playCorrect();
       void router.push(`/category/${completeCode}`);
     } else {
       playWrong();
