@@ -38,7 +38,7 @@ export const CodesData: ICodesData[] = [
     audio: "/audios/BOBINE.mp3",
     secondAudio: "/audios/BOBINE_2.mp3",
     hint: "/audios/BOBINE_INDICE.mp3",
-    secret: 2416,
+    secret: 2406,
     group: 1,
   },
   {
@@ -75,7 +75,7 @@ export const CodesData: ICodesData[] = [
     audio: "/audios/RADIO.mp3",
     secondAudio: "/audios/RADIO.mp3",
     hint: "/audios/PARTITION_INDICE.mp3",
-    secret: 1550,
+    secret: 0o701,
     group: 2,
   },
   {
