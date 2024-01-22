@@ -1,13 +1,16 @@
+"use client";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Timer from "@/components/Timer";
+import AudioPlayer from "@/components/AudioPlayer";
+import { CodesData } from "@/data/codes-data";
 
 interface SuccessPageI {
   params: { id: string };
 }
 export default function SuccessPage({ params }: SuccessPageI) {
-  if (!params.id) return notFound();
+  const currentData = CodesData.find((data) => String(data.id) === params.id);
+  if (!currentData) return notFound();
 
   return (
     <main
@@ -21,13 +24,13 @@ export default function SuccessPage({ params }: SuccessPageI) {
         <span>BRAVO</span>
       </section>
       <section className={"h-4/6 w-full flex items-center justify-center"}>
-        <Image
-          src={
-            "https://em-content.zobj.net/source/telegram/358/party-popper_1f389.webp"
-          }
-          alt={"sparkle telemoji"}
-          width={200}
-          height={200}
+        <AudioPlayer
+          currentData={{
+            ...currentData,
+            audio: currentData.secondAudio!,
+            color: "white",
+            fill: true,
+          }}
         />
       </section>
       <Timer />
@@ -36,7 +39,7 @@ export default function SuccessPage({ params }: SuccessPageI) {
           "h-min bg-injeu-light-red w-full flex items-center justify-start"
         }
       >
-        <Link href={`/category/${params.id}`}>
+        <Link onClick={() => stop()} href={`/category/${params.id}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
