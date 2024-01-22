@@ -16,7 +16,7 @@ export const CongratulationData: ICongratulationData = {
   congrats: {
     title: "FELICITATION",
     color: "bg-primary",
-    audio: "/audios/OUTRO.mp4",
+    audio: "/audios/OUTRO.mp3",
     fill: true,
   },
   credits: {

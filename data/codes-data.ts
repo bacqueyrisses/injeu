@@ -14,7 +14,7 @@ export const CodesData: ICodesData[] = [
     id: 11,
     title: "RADIO",
     color: "bg-injeu-light-gray",
-    audio: "/audios/RADIO.mp4",
+    audio: "/audios/RADIO.mp3",
     secondAudio: "/audios/RADIO_2.mp3",
     hint: "/audios/RADIO_INDICE.mp3",
     secret: 0o701,
@@ -38,7 +38,7 @@ export const CodesData: ICodesData[] = [
     audio: "/audios/BOBINE.mp3",
     secondAudio: "/audios/BOBINE_2.mp3",
     hint: "/audios/BOBINE_INDICE.mp3",
-    secret: 2406,
+    secret: 3746,
     group: 1,
   },
   {
@@ -48,7 +48,7 @@ export const CodesData: ICodesData[] = [
     audio: "/audios/CHAUSSON.mp3",
     secondAudio: "/audios/CHAUSSON_2.mp3",
     hint: "/audios/CHAUSSON_INDICE.mp3",
-    secret: 2006,
+    secret: 2406,
     group: 1,
   },
   {
@@ -75,7 +75,7 @@ export const CodesData: ICodesData[] = [
     audio: "/audios/FOULARD.mp3",
     secondAudio: "/audios/FOULARD_2.mp3",
     hint: "/audios/PARTITION_INDICE.mp3",
-    secret: 0o701,
+    secret: 1550,
     group: 2,
   },
   {

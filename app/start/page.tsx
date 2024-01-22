@@ -32,7 +32,7 @@ export default function StartPage() {
   const [secondAudioLoaded, setSecondAudioLoaded] = useState(false);
 
   const [playFirst, { pause: pauseFirst, stop: stopFirst }] = useSound(
-    "/audios/INTRO.mp4",
+    "/audios/INTRO.mp3",
     {
       onload: () => {
         setFirstAudioLoaded(true);

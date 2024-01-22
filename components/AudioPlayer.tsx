@@ -34,6 +34,8 @@ export default function AudioPlayer({
     !audioPlaying && stop();
   }, [audioPlaying]);
 
+  console.log(audioLoaded);
+
   const handleAudio = () => {
     setAudioStarted((prev) => !prev);
     if (audioStarted) {
