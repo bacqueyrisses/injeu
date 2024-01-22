@@ -17,7 +17,7 @@ export const CodesData: ICodesData[] = [
     audio: "/audios/RADIO.mp3",
     secondAudio: "/audios/RADIO_2.mp3",
     hint: "/audios/RADIO_INDICE.mp3",
-    secret: 0o701,
+    secret: +"0701",
     group: 1,
     fill: true,
   },

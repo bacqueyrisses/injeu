@@ -12,7 +12,7 @@ export default function InterludePage() {
   const [audioStarted, setAudioStarted] = useState(false);
   const [audioLoaded, setAudioLoaded] = useState(false);
   const { pauseTimer, startTimer } = useTimer();
-  const [play, { stop, pause }] = useSound("/audios/ENTRACTE.mp4", {
+  const [play, { stop, pause }] = useSound("/audios/ENTREACTE.mp3", {
     interrupt: true,
     onload: () => {
       setAudioLoaded(true);
@@ -132,7 +132,7 @@ export default function InterludePage() {
       >
         <Timer />
         {timeRemaining !== 0 && (
-          <div className="relative items-center text-3xl w-[325px] grow">
+          <div className="relative items-center text-3xl w-[330px] grow">
             {timeRemaining !== null ? (
               <span>
                 Revenez dans{" "}
