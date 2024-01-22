@@ -99,13 +99,16 @@ export default function CategoryStateSection({
           />
           <div
             className={
-              "w-full h-1/6 flex justify-center items-center bg-injeu-red"
+              "w-full h-1/6 flex justify-center items-center bg-injeu-red w-full"
             }
           >
+            <div className={"basis-1/3"} />
             <Link
               onClick={() => setAudioPlaying(false)}
               href={`/code/${currentData.id}`}
-              className={"bg-injeu-red "}
+              className={
+                "bg-injeu-red basis-1/3 inline-flex justify-center items-center"
+              }
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,9 +128,25 @@ export default function CategoryStateSection({
             </Link>
             <Link
               href={`/code/hint/${currentData.id}`}
-              className={"inline-flex justify-center items-center"}
+              className={
+                "inline-flex justify-end items-center basis-1/3 md:pr-10 pr-4"
+              }
             >
-              ?
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="white"
+                height={100}
+                width={100}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+                />
+              </svg>
             </Link>
           </div>
         </>

@@ -1,6 +1,5 @@
 "use client";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import useSound from "use-sound";
 import { CodesData } from "@/data/codes-data";
 import Timer from "@/components/Timer";
@@ -14,6 +13,7 @@ export default function HintPage({ params }: SuccessPageI) {
   const [audioStarted, setAudioStarted] = useState(false);
   const [audioLoaded, setAudioLoaded] = useState(false);
   const currentData = CodesData.find((data) => String(data.id) === params.id);
+  const { back } = useRouter();
   if (!currentData?.hint) return notFound();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -37,6 +37,11 @@ export default function HintPage({ params }: SuccessPageI) {
       play();
       setAudioStarted(true);
     }
+  };
+
+  const handleBackButton = () => {
+    stop();
+    back();
   };
 
   return (
@@ -79,7 +84,7 @@ export default function HintPage({ params }: SuccessPageI) {
           "h-min bg-injeu-light-red w-full flex items-center justify-start"
         }
       >
-        <Link onClick={() => stop()} href={`/code/${params.id}`}>
+        <button onClick={handleBackButton}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -95,7 +100,7 @@ export default function HintPage({ params }: SuccessPageI) {
               d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
             />
           </svg>
-        </Link>
+        </button>
       </div>
     </main>
   );
