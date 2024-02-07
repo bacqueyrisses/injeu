@@ -1,4 +1,3 @@
-### Description
 <h1 align="center">👾 INJEU</h1>
 
 <p align="center">
