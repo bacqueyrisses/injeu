@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher";
