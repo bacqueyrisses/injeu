@@ -11,8 +11,8 @@
   <a href="#author"><strong>Author</strong></a>
 </p>
 
-<a href="https://www.nextai.dev">
-    <img alt="Discover Next.js effortlessly with this AI-powered documentation search." src="https://github.com/bacqueyrisses/injeu/assets/96829831/152cb197-fe3d-4169-b928-3ee93246c21f">
+<a href="https://www.injeu.com">
+    <img alt="INJEU site internet." src="https://github.com/bacqueyrisses/injeu/assets/96829831/4172304f-76fb-4b49-a802-5848ed35297b">
 </a>
 
 <br/>
