@@ -34,7 +34,7 @@ export default function Home() {
           }
         >
           <span className={"px-4 text-5xl leading-extra-tight"}>
-            Bienvenu dans l'expérience INJEU
+            Bienvenue dans l'expérience INJEU
           </span>
           <span className={"text-2xl"}>Développé par</span>
           <div className={"flex gap-8 px-4"}>
